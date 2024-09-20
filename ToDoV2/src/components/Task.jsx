@@ -1,9 +1,12 @@
 import React from 'react'
 
-const Task = () => {
+const Task = ({task}) => {
+
   return (
-    <div>Task</div>
-  )
+    <li>
+        <input type="checkbox"/>{task.title}
+    </li>
+  );
 }
 
-export default Task
+export default Task;
