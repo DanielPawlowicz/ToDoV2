@@ -4,6 +4,12 @@ li {
     font-size: 20px;
 }
 
+.inlineContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
 .checkboxSup{
     margin-right: 15px;
     width: 15px;
@@ -18,11 +24,49 @@ li {
     vertical-align: bottom;
 }
 
-.superiorTask{
+.superiorTask {
     margin-top: 10px;
+    border-bottom: 0.5px solid #efefef;
+    padding: 10px; /* add some padding to the container */
 }
 
 .subtask{
     color: #444;
     font-size: 15px;
+    margin-top: 0 !important;
+}
+
+.task_title{
+    display: inline-block;
+    margin-right: 10px; 
+    vertical-align: middle;
+}
+
+.secondContainer {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.secondContainer {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.barsContainer {
+    margin-left: 10px; /* add some margin to the bars container */
+    cursor: pointer;
+}
+
+.toggle_button{
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+    background-color: rgba(255,255,255,0);
+    cursor: pointer;
+}
+
+.title_checked{
+    color: #ccc;
 }
