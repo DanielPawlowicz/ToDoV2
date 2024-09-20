@@ -1,0 +1,28 @@
+
+li {
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.checkboxSup{
+    margin-right: 15px;
+    width: 15px;
+    height: 15px;
+    vertical-align: bottom;
+}
+
+.checkboxSub{
+    margin-right: 10px;
+    width: 13px;
+    height: 13px;
+    vertical-align: bottom;
+}
+
+.superiorTask{
+    margin-top: 10px;
+}
+
+.subtask{
+    color: #444;
+    font-size: 15px;
+}

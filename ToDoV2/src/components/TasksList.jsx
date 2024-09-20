@@ -1,5 +1,6 @@
 import React from 'react'
 import Task from './Task'
+import styles from './TasksList.module.css'
 
 const TasksList = ({ tasks }) => {
   return (

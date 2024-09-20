@@ -3,6 +3,7 @@ import Task from './Task'
 import Form from './Form'
 import taskList from '../assets/tasks.json'
 import TasksList from './TasksList'
+import styles from './ToDoList.module.css'
 
 const ToDoList = () => {
 
@@ -10,11 +11,10 @@ const ToDoList = () => {
     console.log(tasks);
 
   return (
-    <>
+    <div className={styles.container}>
         <Form tasks={tasks} setTasks={setTasks}/>
         <TasksList tasks={tasks}/>
-        
-    </>
+    </div>
   )
 }
 
