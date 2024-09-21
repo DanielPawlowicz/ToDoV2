@@ -26,9 +26,20 @@ const ToDoList = () => {
       fetchTasks();
     },[]);
 
+    const addTask = async (newTask) => {
+      const res = await fetch("http://localhost:8000/toDoList1", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTask),
+      });
+      return;
+    };
+
   return (
     <div className={styles.container}>
-        <Form tasks={tasks} setTasks={setTasks}/>
+        <Form addTask={addTask}/>
         <TasksList tasks={tasks}/>
     </div>
   )
