@@ -28,15 +28,33 @@ li:hover{
     vertical-align: bottom;
 }
 
+input[type="checkbox"]{
+    appearance: none;
+    border: 1px solid black
+}
+
+input[type="checkbox"]:checked {
+    accent-color: #ddd;
+    /* appearance: none; */
+    background-color: #ddd;
+    border: 1px solid white;
+}
+
+.title_checked{
+    color: #bbb;
+    text-decoration: line-through;
+}
+
 .superiorTask {
     /* margin-top: 5px; */
     padding: 5px; /* add some padding to the container */
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .subtask{
     color: #444;
-    font-size: 15px;
+    font-weight: 400;
+    font-size: 14px;
     margin-top: 0 !important;
 }
 
@@ -72,5 +90,7 @@ li:hover{
 }
 
 .title_checked{
-    color: #ccc;
+    color: #bbb;
+    text-decoration: line-through;
 }
+

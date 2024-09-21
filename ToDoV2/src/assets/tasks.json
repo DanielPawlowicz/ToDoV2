@@ -3,12 +3,12 @@
     {
       "id": "1",
       "title": "task 1",
-      "isChecked": false
+      "isChecked": true
     },
     {
       "id": "2",
       "title": "task 2",
-      "isChecked": false,
+      "isChecked": true,
       "subtasks": [
         {
           "id": "5",

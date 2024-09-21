@@ -12,6 +12,7 @@ const ToDoList = () => {
     
     const [tasks, setTasks] = useState([]);
     
+    // Get the tasks from toDoList1
     useEffect(()=>{
       const fetchTasks = async () => {
         try {
@@ -26,6 +27,7 @@ const ToDoList = () => {
       fetchTasks();
     },[]);
 
+    // POST new task to the toDoList1
     const addTask = async (newTask) => {
       const res = await fetch("http://localhost:8000/toDoList1", {
         method: 'POST',
