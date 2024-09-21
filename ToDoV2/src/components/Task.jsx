@@ -33,7 +33,7 @@ const Task = ({ task, isSub = false }) => {
         </div>
         {isHovered && (
           <div className={styles.barsContainer}>
-            <FaBars />
+            <FaBars style={{fontSize: 15, color: '#aaa'}}/>
           </div>
         )}
       </div>

@@ -4,6 +4,10 @@ li {
     font-size: 20px;
 }
 
+li:hover{
+    background-color: #fcfcfc;
+}
+
 .inlineContainer {
     display: flex;
     justify-content: space-between;
@@ -26,7 +30,6 @@ li {
 
 .superiorTask {
     margin-top: 10px;
-    border-bottom: 0.5px solid #efefef;
     padding: 10px; /* add some padding to the container */
 }
 
