@@ -6,41 +6,26 @@
       "isChecked": true
     },
     {
-      "id": "2",
+      "id": "00a768cd-7120-4be1-a490-0287ee1a5d25",
+      "title": "1",
+      "isChecked": false
+    },
+    {
+      "id": "96b3e1d3-bc76-4e47-a9da-99b1ba5cbeac",
       "title": "task 2",
+      "isChecked": true
+    },
+    {
+      "id": "f5ef81af-e354-48c6-a786-16c9091fa54d",
+      "title": "task 3",
       "isChecked": true,
       "subtasks": [
         {
-          "id": "5",
-          "title": "task 2.1",
-          "isChecked": true
-        },
-        {
-          "id": "6",
-          "title": "task 2.2",
-          "isChecked": false
-        },
-        {
-          "id": "7",
-          "title": "new test subtask",
+          "id": "2",
+          "title": "task 3.1",
           "isChecked": false
         }
       ]
-    },
-    {
-      "id": "3",
-      "title": "task 3",
-      "isChecked": false
-    },
-    {
-      "id": "4",
-      "title": "task 4",
-      "isChecked": false
-    },
-    {
-      "id": "58f2c6af-239a-4697-919c-081c5e10e6dc",
-      "title": "TestTask",
-      "isChecked": false
     }
   ]
 }
