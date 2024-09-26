@@ -6,26 +6,12 @@ import TasksList from './TasksList'
 import styles from './ToDoList.module.css'
 
 const ToDoList = () => {
-
-    // const [tasks, setTasks] = useState(taskList);
-    // console.log(tasks);
     
+
     const [tasks, setTasks] = useState([]);
-    
-    // Get the tasks from toDoList1
-    // useEffect(()=>{
-    //   const fetchTasks = async () => {
-    //     try {
-    //       const res = await fetch('http://localhost:8000/toDoList1');
-    //       const data = await res.json();
-    //       setTasks(data);
-    //     } catch (error) {
-    //       console.error("Error fetching data: " + error)
-    //     }
-    //   }
+ 
 
-    //   fetchTasks();
-    // },[]);
+    // GET tasks and Subtasks during render
     useEffect(() => {
       const fetchTasksAndSubtasks = async () => {
         try {
@@ -67,33 +53,8 @@ const ToDoList = () => {
       return;
     };
 
-    // PUT the task change isChecked
-    // const taskUpdate = async (updatedTask) => {
-    //   try {
-    //     const res = await fetch(`http://localhost:8000/toDoList1/${updatedTask.id}`, {
-    //       method: 'PUT',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(updatedTask),
-    //     });
-        
-    //     if (res.ok) {
-    //       // Update the local tasks state with the updated task
-    //       setTasks((prevTasks) =>
-    //         prevTasks.map((task) =>
-    //           task.id === updatedTask.id ? { ...task, ...updatedTask } : task
-    //         )
-    //       );
 
-    //       console.log(tasks);
-    //     } else {
-    //       console.error("Error updating task: " + res.status);
-    //     }
-    //   } catch (error) {
-    //     console.error("Error updating task: " + error);
-    //   }
-    // };
+    // PUT the task change isChecked
     const taskUpdate = async (updatedTask) => {
       // Remove subtasks from the task before sending to the server
       const taskWithoutSubtasks = { ...updatedTask };
@@ -122,6 +83,7 @@ const ToDoList = () => {
       }
     };
 
+    // PUT the subtask change isChecked
     const updateSubtask = async (updatedSubtask) => {
       // console.log("here in todolist it works")
       try {

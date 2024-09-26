@@ -7,34 +7,30 @@ const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
   const [showSubtasks, setShowSubtasks] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
+
 
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
 
+
+  // for checking off the checkbox in tasks and subtasks
   const handleCheckboxChange = (e, task) => {
     const updatedTask = {
       ...task,
       isChecked: e.target.checked,
     };
-    // console.log(updatedTask);
     if(isSub){
       subtaskChange(updatedTask);
-      // console.log("USE SUBTASK CHANGE")
     } else {
       onChange(updatedTask);
     }
-    // task.isChecked = e.target.checked;
   };
 
-  // console.log("Task:", task);
-  // console.log("Subtasks:", task.subtasks);
-
-
-  // console.log(task.title + " " + task.isChecked);
 
   return (
     <li 
