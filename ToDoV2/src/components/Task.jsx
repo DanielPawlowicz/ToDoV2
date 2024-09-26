@@ -1,21 +1,32 @@
 import React, { useState } from 'react';
 import styles from './Task.module.css';
 import {FaAngleDown, FaAngleUp, FaBars} from "react-icons/fa";
+import DialogBox from './DialogBox';
 
 const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
 
   const [showSubtasks, setShowSubtasks] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [showDialogBox, setShowDialogBox] = useState(false);
 
 
+  // handle hover on the task li
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
 
-
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+  // handle hover on the hamburger icon
+  const handleDialogBoxShow = () => {
+    setShowDialogBox(true);
+  }
+  
+  const handleDialogBoxHide = () => {
+    setShowDialogBox(false);
+  }
 
 
   // for checking off the checkbox in tasks and subtasks
@@ -51,7 +62,10 @@ const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
         </div>
         {isHovered && (
           <div className={styles.barsContainer}>
-            <FaBars style={{ fontSize: 15, color: '#aaa' }} />
+            <FaBars style={{ fontSize: 15, color: '#aaa' }} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide} />
+            {showDialogBox && 
+              <DialogBox task={task}/>
+            }
           </div>
         )}
       </div>

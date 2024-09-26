@@ -79,6 +79,7 @@ input[type="checkbox"]:checked {
 .barsContainer {
     margin-left: 10px; /* add some margin to the bars container */
     cursor: pointer;
+    position: relative;
 }
 
 .toggle_button{
@@ -93,4 +94,3 @@ input[type="checkbox"]:checked {
     color: #bbb;
     text-decoration: line-through;
 }
-
