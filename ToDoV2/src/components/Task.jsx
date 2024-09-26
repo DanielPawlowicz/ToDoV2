@@ -61,8 +61,8 @@ const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
           )}
         </div>
         {isHovered && (
-          <div className={styles.barsContainer}>
-            <FaBars style={{ fontSize: 15, color: '#aaa' }} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide} />
+          <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide} >
+            <FaBars style={{ fontSize: 15, color: '#aaa' }} />
             {showDialogBox && 
               <DialogBox task={task}/>
             }
