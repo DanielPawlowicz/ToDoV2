@@ -26,14 +26,14 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate }) => {
     <ul>
       {tasks.map((task) => (
         <React.Fragment key={task.id}>
-          <Task task={task} onChange={taskUpdate} />
-          {task.subtasks && (
+          <Task task={task} onChange={taskUpdate} subtaskChange={subtaskUpdate}/>
+          {/* {task.subtasks && (
             <ul>
               {task.subtasks.map((subtask) => (
                 <Task key={subtask.id} task={subtask} isSub={true} onChange={subtaskUpdate} />
               ))}
             </ul>
-          )}
+          )} */}
         </React.Fragment>
       ))}
     </ul>
