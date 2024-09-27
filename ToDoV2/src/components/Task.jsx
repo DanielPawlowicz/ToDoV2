@@ -64,7 +64,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
           <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide} >
             <FaBars style={{ fontSize: 15, color: '#aaa' }} />
             {showDialogBox && 
-              <DialogBox task={task}/>
+              <DialogBox task={task} isSub={isSub}/>
             }
           </div>
         )}

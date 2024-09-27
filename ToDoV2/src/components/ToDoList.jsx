@@ -43,7 +43,7 @@ const ToDoList = () => {
     }, []);
     
 
-    // POST new task to the toDoList1
+    // POST new task to the tasks
     const addTask = async (newTask) => {
       const res = await fetch("http://localhost:8000/tasks", {
         method: 'POST',
@@ -122,9 +122,36 @@ const ToDoList = () => {
 
 
     // delete task
-    function deleteTask (task) {
-      console.log("Delete: "+task.title)
-    }
+    const deleteTask = async (deletingTask, isSub) => {
+      // console.log("Delete: "+task.title+"subtask? "+isSub)
+
+      let taskType=null;
+
+      isSub ? taskType = 'subtasks' : taskType = 'tasks';
+
+      try {
+        const res = await fetch(`http://localhost:8000/${taskType}/${deletingTask.id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+    
+        if (res.ok) {
+          setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+              task.id === deletingTask.id ? { ...task, ...deletingTask } : task
+            )
+          );
+        } else {
+          console.error("Error updating task: " + res.status);
+        }
+      } catch (error) {
+        console.error("Error updating task: " + error);
+      }
+    };
+
+    
 
 
   return (
