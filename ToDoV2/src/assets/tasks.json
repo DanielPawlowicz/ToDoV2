@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "Task 1",
-      "isChecked": true
+      "isChecked": false
     },
     {
       "id": "2",
@@ -18,7 +18,7 @@
     {
       "id": "20384689-4daf-451a-b878-252e152f85c4",
       "title": "Task 4",
-      "isChecked": true
+      "isChecked": false
     }
   ],
   "subtasks": [
@@ -26,13 +26,13 @@
       "id": "101",
       "taskId": "1",
       "title": "Subtask 1.1",
-      "isChecked": true
+      "isChecked": false
     },
     {
       "id": "102",
       "taskId": "2",
       "title": "Subtask 2.1",
-      "isChecked": false
+      "isChecked": true
     },
     {
       "id": "103",

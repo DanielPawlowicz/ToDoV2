@@ -1,6 +1,12 @@
 .dialog_box{
     position: absolute;
-    top: 20;
-    left: 0;
-    border: 2px solid black;
+    top: 10px;
+    left: 15px;
+    padding: 5px 15px;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.delete_icon{
+    color: rgba(200, 100, 100);
 }

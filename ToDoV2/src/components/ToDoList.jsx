@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import Task from './Task'
 import Form from './Form'
 import taskList from '../assets/tasks.json'
 import TasksList from './TasksList'
 import styles from './ToDoList.module.css'
+
+export const DeleteTaskContext = createContext();
 
 const ToDoList = () => {
     
@@ -119,11 +121,19 @@ const ToDoList = () => {
     };
 
 
+    // delete task
+    function deleteTask (task) {
+      console.log("Delete: "+task.title)
+    }
+
+
   return (
-    <div className={styles.container}>
-        <Form addTask={addTask}/>
-        <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask}/>
-    </div>
+    <DeleteTaskContext.Provider value={deleteTask}>
+      <div className={styles.container}>
+          <Form addTask={addTask}/>
+          <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask}/>
+      </div>
+    </DeleteTaskContext.Provider>
   )
 }
 
