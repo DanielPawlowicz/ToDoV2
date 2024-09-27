@@ -129,6 +129,28 @@ const ToDoList = () => {
 
       isSub ? taskType = 'subtasks' : taskType = 'tasks';
 
+      if(!isSub){
+        if(deletingTask.subtasks.length > 0){
+          try {
+            const response = await fetch(`http://localhost:8000/subtasks?taskId=${deletingTask.id}`);
+            const subtasks = await response.json();
+            
+            // Usuwanie każdej subtasķi indywidualnie
+            for (const subtask of subtasks) {
+              await fetch(`http://localhost:8000/subtasks/${subtask.id}`, {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                }
+              });
+            }
+            console.log("Subtasks deleted successfully");
+          } catch (error) {
+            console.error("Error deleting subtasks: ", error);
+          }
+        }
+      }
+
       try {
         const res = await fetch(`http://localhost:8000/${taskType}/${deletingTask.id}`, {
           method: 'DELETE',
@@ -144,10 +166,10 @@ const ToDoList = () => {
             )
           );
         } else {
-          console.error("Error updating task: " + res.status);
+          console.error("Error deleting task: " + res.status);
         }
       } catch (error) {
-        console.error("Error updating task: " + error);
+        console.error("Error deleting task: " + error);
       }
     };
 
