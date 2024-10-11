@@ -1,11 +1,7 @@
-import React, { useState, useEffect, createContext } from 'react'
-import Task from './Task'
+import React, { useState, useEffect } from 'react'
 import Form from './Form'
-import taskList from '../assets/tasks.json'
 import TasksList from './TasksList'
 import styles from './ToDoList.module.css'
-
-export const DeleteTaskContext = createContext();
 
 const ToDoList = () => {
     
@@ -177,12 +173,10 @@ const ToDoList = () => {
 
 
   return (
-    <DeleteTaskContext.Provider value={deleteTask}>
       <div className={styles.container}>
           <Form addTask={addTask}/>
-          <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask}/>
+      <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask}/>
       </div>
-    </DeleteTaskContext.Provider>
   )
 }
 

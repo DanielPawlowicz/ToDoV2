@@ -3,7 +3,7 @@ import styles from './Task.module.css';
 import {FaAngleDown, FaAngleUp, FaBars} from "react-icons/fa";
 import DialogBox from './DialogBox';
 
-const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
+const Task = ({ task, isSub = false, onChange, subtaskChange, deleteTask }) => {
 
   const [showSubtasks, setShowSubtasks] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -64,7 +64,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
           <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide} >
             <FaBars style={{ fontSize: 15, color: '#aaa' }} />
             {showDialogBox && 
-              <DialogBox task={task} isSub={isSub}/>
+              <DialogBox task={task} isSub={isSub} deleteTask={deleteTask} />
             }
           </div>
         )}
@@ -73,7 +73,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange }) => {
       {Array.isArray(task.subtasks) && showSubtasks && (
         <ul>
           {task.subtasks.map((subtask) => (
-            <Task key={subtask.id} task={subtask} isSub={true} onChange={subtaskChange} subtaskChange={subtaskChange}/>
+            <Task key={subtask.id} task={subtask} isSub={true} onChange={subtaskChange} subtaskChange={subtaskChange} deleteTask={deleteTask} />
           ))}
         </ul>
       )}

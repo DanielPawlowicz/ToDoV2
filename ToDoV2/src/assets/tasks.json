@@ -59,7 +59,31 @@
       "id": "6041c6ba-1efd-418e-aee7-4af56b4952cd",
       "title": "asdfasd",
       "isChecked": false
+    },
+    {
+      "id": "8c798026-3d99-4f22-8939-ad3a356e2787",
+      "title": "Tak new",
+      "isChecked": false
     }
   ],
-  "subtasks": []
+  "subtasks": [
+    {
+      "id": "1434",
+      "taskId": "28a92069-05f3-4c9b-bb83-6dd5893db996",
+      "title": "subtask 1",
+      "isChecked": true
+    },
+    {
+      "id": "1436",
+      "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
+      "title": "subtask 3",
+      "isChecked": true
+    },
+    {
+      "id": "1437",
+      "taskId": "03a53ca3-8439-4dce-af0d-d6349701ef70",
+      "title": "subtask 4",
+      "isChecked": true
+    }
+  ]
 }
