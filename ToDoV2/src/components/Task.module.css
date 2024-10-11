@@ -1,7 +1,7 @@
 
 li {
     list-style-type: none;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 li:hover{
@@ -23,8 +23,8 @@ li:hover{
 
 .checkboxSub{
     margin-right: 10px;
-    width: 13px;
-    height: 13px;
+    width: 11px;
+    height: 11px;
     vertical-align: bottom;
 }
 
@@ -47,7 +47,7 @@ input[type="checkbox"]:checked {
 
 .superiorTask {
     /* margin-top: 5px; */
-    padding: 5px; /* add some padding to the container */
+    padding: 7px; /* add some padding to the container */
     font-weight: 500;
 }
 
@@ -93,4 +93,13 @@ input[type="checkbox"]:checked {
 .title_checked{
     color: #bbb;
     text-decoration: line-through;
+}
+
+.FaBars{
+    font-size: 13px;
+    color: #999;
+}
+
+.FaBars:hover{
+    color: #222;
 }
