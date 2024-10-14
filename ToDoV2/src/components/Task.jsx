@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Task.module.css';
 import { FaAngleDown, FaAngleUp, FaBars } from 'react-icons/fa';
 import DialogBox from './DialogBox';
+import SubtaskForm from './SubtaskForm';
 
 const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -12,6 +13,8 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
 
   const handleDialogBoxShow = () => setShowDialogBox(true);
   const handleDialogBoxHide = () => setShowDialogBox(false);
+
+  const [isSubtaskFormVisible, setIsSubtaskFormVisible] = useState(false);
 
   // Handle checking/unchecking of tasks and subtasks
   const handleCheckboxChange = (e, task) => {
@@ -25,6 +28,10 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
       onChange(updatedTask);
     }
   };
+
+  const addSubtask = (taskId) => {
+
+  }
 
   return (
     <li
@@ -54,7 +61,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
           <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide}>
             <FaBars className={styles.FaBars}/>
             {/* <FaBars className={styles.FaBars} style={{ fontSize: 13, color: '#aaa' }} /> */}
-            {showDialogBox && <DialogBox task={task} isSub={isSub} deleteTask={deleteTask}/>}
+            {showDialogBox && <DialogBox task={task} isSub={isSub} deleteTask={deleteTask} setIsSubtaskFormVisible={setIsSubtaskFormVisible}/>}
           </div>
         )}
       </div>
@@ -75,6 +82,10 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
           ))}
         </ul>
       )}
+      {
+      isSubtaskFormVisible && 
+      <SubtaskForm taskId={task.Id}/>
+      }
     </li>
   );
 };

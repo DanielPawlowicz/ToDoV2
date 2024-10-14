@@ -1,0 +1,9 @@
+.SubtaskForm{
+    display: block;
+    position: absolute;
+    top: 35vh;
+    left: 40vw;
+    height: 30vh;
+    width: 30vw;
+    box-shadow: 0 0 10px rgba(192,192,192,0.5);
+}
