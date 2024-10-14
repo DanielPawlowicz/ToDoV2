@@ -1,12 +1,23 @@
 import React, { useState } from 'react'
 import styles from './SubtaskForm.module.css';
 
-const SubtaskForm = ({taskId}) => {
+const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible }) => {
 
     const [newSubtaskTitle, setNewSubtaskTitle] = useState("");
 
-    const newSubtaskSubmit = () => {
+    const newSubtaskSubmit = (e) => {
+        e.preventDefault();
 
+        const subtask = {
+            id: crypto.randomUUID(),
+            taskId: taskId,
+            title: newSubtaskTitle,
+            isChecked: false
+        }
+
+        addSubtask(subtask);
+        setNewSubtaskTitle('');
+        setIsSubtaskFormVisible(false);
     }
 
   return (

@@ -52,6 +52,35 @@ const ToDoList = () => {
     };
 
 
+    // POST new subtask to the subtasks
+  const addSubtask = async (newSubtask) => {
+    try {
+      const res = await fetch("http://localhost:8000/subtasks", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newSubtask),
+      });
+
+      if (res.ok) {
+        // Fetch the updated subtasks from the response or manually add the subtask to the state
+        setTasks((prevTasks) =>
+          prevTasks.map((task) =>
+            task.id === newSubtask.taskId
+              ? { ...task, subtasks: [...task.subtasks, newSubtask] }
+              : task
+          )
+        );
+      } else {
+        console.error("Failed to add subtask: " + res.status);
+      }
+    } catch (error) {
+      console.error("Error adding subtask: ", error);
+    }
+  };
+
+
     // PUT the task change isChecked
     const taskUpdate = async (updatedTask) => {
       // Remove subtasks from the task before sending to the server
@@ -168,7 +197,7 @@ const ToDoList = () => {
   return (
       <div className={styles.container}>
           <Form addTask={addTask}/>
-      <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask}/>
+      <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask}/>
       </div>
   )
 }

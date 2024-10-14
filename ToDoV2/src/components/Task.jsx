@@ -4,7 +4,7 @@ import { FaAngleDown, FaAngleUp, FaBars } from 'react-icons/fa';
 import DialogBox from './DialogBox';
 import SubtaskForm from './SubtaskForm';
 
-const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask }) => {
+const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
 
@@ -28,10 +28,6 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
       onChange(updatedTask);
     }
   };
-
-  const addSubtask = (taskId) => {
-
-  }
 
   return (
     <li
@@ -84,7 +80,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
       )}
       {
       isSubtaskFormVisible && 
-      <SubtaskForm taskId={task.Id}/>
+        <SubtaskForm taskId={task.id} addSubtask={addSubtask} setIsSubtaskFormVisible={setIsSubtaskFormVisible}/>
       }
     </li>
   );
