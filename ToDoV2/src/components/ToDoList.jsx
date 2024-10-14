@@ -118,56 +118,49 @@ const ToDoList = () => {
 
 
     // delete task
-    const deleteTask = async (deletingTask, isSub) => {
-      // console.log("Delete: "+task.title+"subtask? "+isSub)
+  const deleteTask = async (deletingTask, isSub) => {
+    let taskType = isSub ? 'subtasks' : 'tasks';
 
-      let taskType=null;
-
-      isSub ? taskType = 'subtasks' : taskType = 'tasks';
-
-      if(!isSub){
-        if(deletingTask.subtasks.length > 0){
-          try {
-            const response = await fetch(`http://localhost:8000/subtasks?taskId=${deletingTask.id}`);
-            const subtasks = await response.json();
-            
-            // Usuwanie każdej subtasķi indywidualnie
-            for (const subtask of subtasks) {
-              await fetch(`http://localhost:8000/subtasks/${subtask.id}`, {
-                method: 'DELETE',
-                headers: {
-                  'Content-Type': 'application/json',
-                }
-              });
-            }
-            console.log("Subtasks deleted successfully");
-          } catch (error) {
-            console.error("Error deleting subtasks: ", error);
-          }
-        }
-      }
-
+    if (!isSub && deletingTask.subtasks.length > 0) {
+      // Delete subtasks before deleting the task
       try {
-        const res = await fetch(`http://localhost:8000/${taskType}/${deletingTask.id}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-    
-        if (res.ok) {
-          setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-              task.id === deletingTask.id ? { ...task, ...deletingTask } : task
-            )
-          );
-        } else {
-          console.error("Error deleting task: " + res.status);
+        const response = await fetch(`http://localhost:8000/subtasks?taskId=${deletingTask.id}`);
+        const subtasks = await response.json();
+
+        for (const subtask of subtasks) {
+          await fetch(`http://localhost:8000/subtasks/${subtask.id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
         }
       } catch (error) {
-        console.error("Error deleting task: " + error);
+        console.error("Error deleting subtasks: ", error);
+        return;
       }
-    };
+    }
+
+    try {
+      const res = await fetch(`http://localhost:8000/${taskType}/${deletingTask.id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (res.ok) {
+        // After deleting, filter out the task from the tasks array
+        setTasks((prevTasks) =>
+          prevTasks.filter((task) => task.id !== deletingTask.id)
+        );
+      } else {
+        console.error("Error deleting task: " + res.status);
+      }
+    } catch (error) {
+      console.error("Error deleting task: " + error);
+    }
+  };
 
     
 
