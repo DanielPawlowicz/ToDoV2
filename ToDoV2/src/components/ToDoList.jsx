@@ -41,14 +41,25 @@ const ToDoList = () => {
 
     // POST new task to the tasks
     const addTask = async (newTask) => {
-      const res = await fetch("http://localhost:8000/tasks", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newTask),
-      });
-      return;
+      try{
+        const res = await fetch("http://localhost:8000/tasks", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newTask),
+        });
+
+        if (res.ok) {
+          setTasks((prevTasks) => [...prevTasks, newTask]);
+        } else {
+          console.error("Failed to add subtask: " + res.status);
+        }
+
+      } catch (error) {
+        console.error("Error adding subtask: ", error);
+      }
+
     };
 
 
