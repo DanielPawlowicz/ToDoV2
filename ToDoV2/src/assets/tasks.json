@@ -78,6 +78,12 @@
       "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
       "title": "Subtask 6",
       "isChecked": false
+    },
+    {
+      "id": "2f19080a-1189-4e34-bfee-81c0c2c5d0b9",
+      "taskId": "03a53ca3-8439-4dce-af0d-d6349701ef70",
+      "title": "new subtask 1",
+      "isChecked": false
     }
   ]
 }

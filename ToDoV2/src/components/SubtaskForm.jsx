@@ -21,7 +21,8 @@ const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible }) => {
     }
 
   return (
-      <form className={styles.SubtaskForm} onSubmit={newSubtaskSubmit}>
+    <div className={styles.subtask_form}>
+      <form onSubmit={newSubtaskSubmit}>
           <input
               id="subtask_title_input"
               type="text"
@@ -33,6 +34,7 @@ const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible }) => {
           />
           <button type="submit">Add Subtask</button>
       </form>
+    </div>
   )
 }
 
