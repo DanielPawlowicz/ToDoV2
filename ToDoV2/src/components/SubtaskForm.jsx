@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styles from './SubtaskForm.module.css';
 
 const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible }) => {
 
     const [newSubtaskTitle, setNewSubtaskTitle] = useState("");
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [])
 
     const newSubtaskSubmit = (e) => {
         e.preventDefault();
@@ -31,6 +39,7 @@ const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible }) => {
               size={50}
               value={newSubtaskTitle}
               onChange={(e) => setNewSubtaskTitle(e.target.value)}
+              ref={inputRef}
           />
           <button type="submit">Add Subtask</button>
       </form>

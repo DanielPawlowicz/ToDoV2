@@ -8,7 +8,7 @@
     {
       "id": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
       "title": "Task 2",
-      "isChecked": true
+      "isChecked": false
     },
     {
       "id": "3e78c92d-8d75-417f-b88d-46a1464789d9",
@@ -83,6 +83,12 @@
       "id": "2f19080a-1189-4e34-bfee-81c0c2c5d0b9",
       "taskId": "03a53ca3-8439-4dce-af0d-d6349701ef70",
       "title": "new subtask 1",
+      "isChecked": false
+    },
+    {
+      "id": "a39988c0-5da7-4975-8ddf-efcbd34db671",
+      "taskId": "03a53ca3-8439-4dce-af0d-d6349701ef70",
+      "title": "new subtask 2",
       "isChecked": false
     }
   ]

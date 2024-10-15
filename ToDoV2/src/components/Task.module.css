@@ -6,7 +6,7 @@ li {
 
 li:hover{
     background-color: #f0f0f0;
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 .inlineContainer {
