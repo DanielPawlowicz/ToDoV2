@@ -7,6 +7,8 @@ import SubtaskForm from './SubtaskForm';
 const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
+  const [isTaskUpdating, setIsTaskUpdating] = useState(false);
+  const [newTaskTitle, setNewTaskTitle] = useState('');
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
@@ -29,6 +31,24 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
     }
   };
 
+  const handleTitleChange = (e, task) => {
+    e.preventDefault();
+    // console.log(task);
+    // console.log(newTaskTitle);
+    const updatedTask = {
+      id: task.id,
+      title: newTaskTitle,
+      isChecked: task.isChecked,
+    };
+
+    console.log(updatedTask);
+
+    setIsTaskUpdating(false);
+
+    // updateTask(updatedTask);
+    setNewTaskTitle('');
+  }
+
   return (
     <li
       className={isSub ? styles.subtask : styles.superiorTask}
@@ -43,9 +63,19 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
             checked={task.isChecked}
             onChange={(e) => handleCheckboxChange(e, task)}
           />
-          <span className={task.isChecked ? `${styles.title_checked} ${styles.task_title}` : styles.task_title}>
-            {task.title}
-          </span>
+          {!isTaskUpdating 
+          ? <>
+            <span onClick={() => setIsTaskUpdating(true)} className={task.isChecked ? `${styles.title_checked} ${styles.task_title}` : styles.task_title}>
+              {task.title}
+            </span>
+          </>
+          : <>
+              <form onSubmit={(e) => handleTitleChange(e, task)}>
+                <input type='text' defaultValue={task.title} onChange={(e) => setNewTaskTitle(e.target.value)}/>
+                <button type="submit">Save</button>
+            </form>
+          </>
+          }
           {/* Ensure that subtasks exist before rendering the toggle button */}
           {Array.isArray(task.subtasks) && task.subtasks.length > 0 && (
             <button className={styles.toggle_button} onClick={toggleSubtasks}>
