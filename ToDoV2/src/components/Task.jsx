@@ -49,7 +49,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
           {/* Ensure that subtasks exist before rendering the toggle button */}
           {Array.isArray(task.subtasks) && task.subtasks.length > 0 && (
             <button className={styles.toggle_button} onClick={toggleSubtasks}>
-              {showSubtasks ? <FaAngleUp /> : <FaAngleDown />}
+              {showSubtasks ? <FaAngleUp className={styles.arrows} /> : <FaAngleDown className={styles.arrows}/>}
             </button>
           )}
         </div>

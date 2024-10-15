@@ -5,7 +5,7 @@ li {
 }
 
 li:hover{
-    background-color: #fcfcfc;
+    background-color: #f0f0f0;
 }
 
 .inlineContainer {
@@ -19,6 +19,8 @@ li:hover{
     width: 15px;
     height: 15px;
     vertical-align: bottom;
+    appearance: none;
+    border: 1px solid black;
 }
 
 .checkboxSub{
@@ -26,12 +28,14 @@ li:hover{
     width: 11px;
     height: 11px;
     vertical-align: bottom;
+    appearance: none;
+    border: 1px solid #898989;
 }
 
-input[type="checkbox"]{
+/* input[type="checkbox"]{
     appearance: none;
     border: 1px solid black
-}
+} */
 
 input[type="checkbox"]:checked {
     accent-color: #ddd;
@@ -47,7 +51,7 @@ input[type="checkbox"]:checked {
 
 .superiorTask {
     /* margin-top: 5px; */
-    padding: 7px; /* add some padding to the container */
+    padding: 7px;
     font-weight: 500;
 }
 
@@ -77,7 +81,7 @@ input[type="checkbox"]:checked {
 }
 
 .barsContainer {
-    margin-left: 10px; /* add some margin to the bars container */
+    margin-left: 10px;
     cursor: pointer;
     position: relative;
 }
@@ -101,5 +105,13 @@ input[type="checkbox"]:checked {
 }
 
 .FaBars:hover{
+    color: #222;
+}
+
+.arrows{
+    color: #aaa;
+}
+
+.arrows:hover {
     color: #222;
 }
