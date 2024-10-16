@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Task from './Task';
 import styles from './TasksList.module.css';
 
-const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask }) => {
+const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask }) => {
   // This state keeps track of which tasks have their subtasks shown
   const [openSubtasks, setOpenSubtasks] = useState({});
 
@@ -26,6 +26,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask })
             toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
             deleteTask={deleteTask}
             addSubtask={addSubtask}
+            updateTask={updateTask}
           />
         </React.Fragment>
       ))}

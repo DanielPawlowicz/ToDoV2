@@ -213,13 +213,53 @@ const ToDoList = () => {
     };
 
 
+    // UPDATE task
+  const updateTask = async (updatedTask, isSub) => {
+
+    let taskType = isSub ? 'subtasks' : 'tasks';
+
+    try {
+      const res = await fetch(`http://localhost:8000/${taskType}/${updatedTask.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedTask), 
+      });
+    
+      if (res.ok) {
+        setTasks((prevTasks) =>
+          prevTasks.map((task) => {
+            if (!isSub && task.id === updatedTask.id) {
+              return { ...task, ...updatedTask };
+            } else if (isSub && task.id === updatedTask.taskId) {
+              return {
+                ...task,
+                subtasks: task.subtasks.map((subtask) =>
+                  subtask.id === updatedTask.id
+                    ? { ...subtask, ...updatedTask }
+                    : subtask
+                ),
+              };
+            }
+            return task;
+          })
+        );
+      } else {
+        console.error(`Error updating ${isSub ? 'subtask' : 'task'}: ` + res.status);
+      }
+    } catch (error) {
+      console.error(`Error updating ${isSub ? 'subtask' : 'task'}: ` + error);
+    }
+  };
+
     
 
 
   return (
       <div className={styles.container}>
           <Form addTask={addTask}/>
-      <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask}/>
+      <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask} updateTask={updateTask}/>
       </div>
   )
 }

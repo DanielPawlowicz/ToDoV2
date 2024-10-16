@@ -4,7 +4,7 @@ import { FaAngleDown, FaAngleUp, FaBars } from 'react-icons/fa';
 import DialogBox from './DialogBox';
 import SubtaskForm from './SubtaskForm';
 
-const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask }) => {
+const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
@@ -33,19 +33,25 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
 
   const handleTitleChange = (e, task) => {
     e.preventDefault();
-    // console.log(task);
-    // console.log(newTaskTitle);
-    const updatedTask = {
-      id: task.id,
-      title: newTaskTitle,
-      isChecked: task.isChecked,
-    };
 
-    console.log(updatedTask);
+    // if(newTaskTitle)
+
+    // console.log(e.target.value)
+
+    if(newTaskTitle !== ''){
+      
+      const updatedTask = {
+        id: task.id,
+        title: newTaskTitle,
+        isChecked: task.isChecked,
+      };
+      
+      updateTask(updatedTask, isSub);
+
+    }
 
     setIsTaskUpdating(false);
 
-    // updateTask(updatedTask);
     setNewTaskTitle('');
   }
 
@@ -104,6 +110,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
               showSubtasks={false} // Subtasks within subtasks are collapsed by default
               toggleSubtasks={null} // Subtasks shouldn't have a toggle button
               deleteTask={deleteTask}
+              updateTask={updateTask}
             />
           ))}
         </ul>

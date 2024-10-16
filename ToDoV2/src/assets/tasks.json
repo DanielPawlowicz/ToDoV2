@@ -11,18 +11,8 @@
       "isChecked": false
     },
     {
-      "id": "3e78c92d-8d75-417f-b88d-46a1464789d9",
-      "title": "Task 4",
-      "isChecked": false
-    },
-    {
-      "id": "03a53ca3-8439-4dce-af0d-d6349701ef70",
-      "title": "Task 5",
-      "isChecked": false
-    },
-    {
       "id": "4b732571-c830-4566-aa71-4a6eb354f5a0",
-      "title": "Task 6",
+      "title": "Task title changed",
       "isChecked": false
     },
     {
@@ -44,11 +34,6 @@
       "id": "cb005185-b4a2-43bf-972b-e01422e6d889",
       "title": "Task 10",
       "isChecked": false
-    },
-    {
-      "id": "d0d623b7-e4d2-4a9d-8233-e7c648ea7fe1",
-      "title": "Task 11",
-      "isChecked": false
     }
   ],
   "subtasks": [
@@ -65,16 +50,9 @@
       "isChecked": false
     },
     {
-      "id": "1437",
-      "taskId": "03a53ca3-8439-4dce-af0d-d6349701ef70",
-      "title": "subtask 4",
-      "isChecked": false
-    },
-    {
       "id": "fa88cf99-cd94-47ac-ad93-47df1f3a0a92",
-      "taskId": "b2ccf98a-271b-40ad-a675-c917e84f0661",
-      "title": "New Subtask",
-      "isChecked": true
+      "title": "Changed subtask title",
+      "isChecked": false
     },
     {
       "id": "82c1ebda-c6c6-4e21-b736-6b738d299140",
@@ -92,18 +70,6 @@
       "id": "eea0ee9c-dea6-4979-bf83-1d16971143fa",
       "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
       "title": "Subtask 6",
-      "isChecked": false
-    },
-    {
-      "id": "2f19080a-1189-4e34-bfee-81c0c2c5d0b9",
-      "taskId": "03a53ca3-8439-4dce-af0d-d6349701ef70",
-      "title": "new subtask 1",
-      "isChecked": false
-    },
-    {
-      "id": "a39988c0-5da7-4975-8ddf-efcbd34db671",
-      "taskId": "03a53ca3-8439-4dce-af0d-d6349701ef70",
-      "title": "new subtask 2",
       "isChecked": false
     }
   ]
