@@ -23,7 +23,7 @@ const ToDoList = () => {
           // Combine tasks and their corresponding subtasks
           const tasksWithSubtasks = tasksData.map((task) => ({
             ...task,
-            subtasks: subtasksData.filter((subtask) => subtask.taskId === task.id),
+            subtasks: subtasksData.filter((subtask) => subtask.taskId === task.id) || [], 
           }));
 
           // console.log(subtasksData);
@@ -51,7 +51,10 @@ const ToDoList = () => {
         });
 
         if (res.ok) {
-          setTasks((prevTasks) => [...prevTasks, newTask]);
+          setTasks((prevTasks) => [
+            ...prevTasks,
+            { ...newTask, subtasks: [] }
+          ]);
         } else {
           console.error("Failed to add subtask: " + res.status);
         }

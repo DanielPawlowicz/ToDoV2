@@ -34,26 +34,19 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
   const handleTitleChange = (e, task) => {
     e.preventDefault();
 
-    // if(newTaskTitle)
+    const updatedTitle = newTaskTitle.trim() === '' ? task.title : newTaskTitle;
 
-    // console.log(e.target.value)
-
-    if(newTaskTitle !== ''){
-      
-      const updatedTask = {
-        id: task.id,
-        title: newTaskTitle,
-        isChecked: task.isChecked,
-      };
-      
-      updateTask(updatedTask, isSub);
-
-    }
+    const updatedTask = {
+      ...task,
+      title: updatedTitle,
+    };
 
     setIsTaskUpdating(false);
 
+    updateTask(updatedTask, isSub);
     setNewTaskTitle('');
-  }
+  };
+
 
   return (
     <li
