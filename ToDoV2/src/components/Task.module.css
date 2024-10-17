@@ -6,7 +6,7 @@ li {
 
 li:hover{
     background-color: #f0f0f0;
-    transform: scale(1.01);
+    transform: scale(1.002);
 }
 
 .inlineContainer {
@@ -67,6 +67,11 @@ input[type="checkbox"]:checked {
     display: inline-block;
     margin-right: 10px; 
     vertical-align: middle;
+    /* Break lines */
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 400px;
+    overflow-wrap: break-word;
 }
 
 .secondContainer {
