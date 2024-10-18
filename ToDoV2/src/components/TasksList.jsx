@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from './Task';
 import styles from './TasksList.module.css';
 
 const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask }) => {
-  // This state keeps track of which tasks have their subtasks shown
   const [openSubtasks, setOpenSubtasks] = useState({});
+  const [toggleAllSubtasksVisibility, setToggleAllSubtasksVisibility] = useState(true);
+
+  // Sync the openSubtasks state with toggleAllSubtasksVisibility
+  useEffect(() => {
+    const newOpenSubtasks = {};
+    tasks.forEach((task) => {
+      newOpenSubtasks[task.id] = toggleAllSubtasksVisibility; // Set to true if globally toggled, otherwise false
+    });
+    setOpenSubtasks(newOpenSubtasks);
+  }, [toggleAllSubtasksVisibility, tasks]);
 
   // Toggles the visibility of subtasks for a particular task
   const toggleSubtasks = (taskId) => {
@@ -22,7 +31,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             task={task}
             onChange={taskUpdate}
             subtaskChange={subtaskUpdate}
-            showSubtasks={openSubtasks[task.id] || false} // Use openSubtasks state to control visibility
+            showSubtasks={openSubtasks[task.id]} // Use openSubtasks state to control visibility
             toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
             deleteTask={deleteTask}
             addSubtask={addSubtask}
