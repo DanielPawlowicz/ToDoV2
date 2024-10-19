@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Task from './Task';
 import styles from './TasksList.module.css';
+import ControlSubtasksToggle from './ControlSubtasksToggle';
 
 const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask }) => {
   const [openSubtasks, setOpenSubtasks] = useState({});
-  const [toggleAllSubtasksVisibility, setToggleAllSubtasksVisibility] = useState(true);
+  const [toggleAllSubtasksVisibility, setToggleAllSubtasksVisibility] = useState(false);
 
   // Sync the openSubtasks state with toggleAllSubtasksVisibility
   useEffect(() => {
@@ -24,23 +25,26 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   };
 
   return (
-    <ul className={styles.taskList}>
-      {tasks.map((task) => (
-        <React.Fragment key={task.id}>
-          <Task
-            task={task}
-            onChange={taskUpdate}
-            subtaskChange={subtaskUpdate}
-            showSubtasks={openSubtasks[task.id]} // Use openSubtasks state to control visibility
-            toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
-            deleteTask={deleteTask}
-            addSubtask={addSubtask}
-            updateTask={updateTask}
-          />
-        </React.Fragment>
-      ))}
-    </ul>
-  );
+    <>
+      <ControlSubtasksToggle subtasksVisibility={toggleAllSubtasksVisibility} setSubtasksVisibility={setToggleAllSubtasksVisibility}/>
+      <ul className={styles.taskList}>
+        {tasks.map((task) => (
+          <React.Fragment key={task.id}>
+            <Task
+              task={task}
+              onChange={taskUpdate}
+              subtaskChange={subtaskUpdate}
+              showSubtasks={openSubtasks[task.id]} // Use openSubtasks state to control visibility
+              toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
+              deleteTask={deleteTask}
+              addSubtask={addSubtask}
+              updateTask={updateTask}
+            />
+          </React.Fragment>
+        ))}
+      </ul>
+    </>
+    );
 };
 
 export default TasksList;
