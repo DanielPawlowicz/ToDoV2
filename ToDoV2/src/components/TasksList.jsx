@@ -14,7 +14,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
       newOpenSubtasks[task.id] = toggleAllSubtasksVisibility; // Set to true if globally toggled, otherwise false
     });
     setOpenSubtasks(newOpenSubtasks);
-  }, [toggleAllSubtasksVisibility, tasks]);
+  }, [toggleAllSubtasksVisibility]);
 
   // Toggles the visibility of subtasks for a particular task
   const toggleSubtasks = (taskId) => {
