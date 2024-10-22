@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Task from './Task';
 import styles from './TasksList.module.css';
 import ControlSubtasksToggle from './ControlSubtasksToggle';
+import { SortableContext } from '@dnd-kit/sortable';
 
 const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask }) => {
   const [openSubtasks, setOpenSubtasks] = useState({});
@@ -28,20 +29,22 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     <>
       <ControlSubtasksToggle subtasksVisibility={toggleAllSubtasksVisibility} setSubtasksVisibility={setToggleAllSubtasksVisibility}/>
       <ul className={styles.taskList}>
-        {tasks.map((task) => (
-          <React.Fragment key={task.id}>
-            <Task
-              task={task}
-              onChange={taskUpdate}
-              subtaskChange={subtaskUpdate}
-              showSubtasks={openSubtasks[task.id]} // Use openSubtasks state to control visibility
-              toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
-              deleteTask={deleteTask}
-              addSubtask={addSubtask}
-              updateTask={updateTask}
-            />
-          </React.Fragment>
-        ))}
+        <SortableContext items={tasks.map(task => task.id)}>
+          {tasks.map((task) => (
+            <React.Fragment key={task.id}>
+              <Task
+                task={task}
+                onChange={taskUpdate}
+                subtaskChange={subtaskUpdate}
+                showSubtasks={openSubtasks[task.id]} // Use openSubtasks state to control visibility
+                toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
+                deleteTask={deleteTask}
+                addSubtask={addSubtask}
+                updateTask={updateTask}
+                />
+            </React.Fragment>
+          ))}
+        </SortableContext>
       </ul>
     </>
     );

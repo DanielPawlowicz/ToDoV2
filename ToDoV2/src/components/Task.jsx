@@ -4,6 +4,10 @@ import { FaAngleDown, FaAngleUp, FaBars } from 'react-icons/fa';
 import DialogBox from './DialogBox';
 import SubtaskForm from './SubtaskForm';
 
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+
+
 const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
@@ -17,6 +21,14 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
   const handleDialogBoxHide = () => setShowDialogBox(false);
 
   const [isSubtaskFormVisible, setIsSubtaskFormVisible] = useState(false);
+
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: task.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
 
   // Handle checking/unchecking of tasks and subtasks
   const handleCheckboxChange = (e, task) => {
@@ -50,6 +62,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
 
   return (
     <li
+      ref={setNodeRef} style={style} {...attributes} {...listeners}
       className={isSub ? styles.subtask : styles.superiorTask}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

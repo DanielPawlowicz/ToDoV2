@@ -3,6 +3,9 @@ import Form from './Form'
 import TasksList from './TasksList'
 import styles from './ToDoList.module.css'
 
+import { DndContext, closestCorners } from '@dnd-kit/core'
+import { arrayMove } from '@dnd-kit/sortable'
+
 const ToDoList = () => {
     
 
@@ -256,13 +259,54 @@ const ToDoList = () => {
     }
   };
 
+
+  // Drag N Drop
+
+  const handleDragEnd = ({ active, over }) => {
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = tasks.findIndex(task => task.id === active.id);
+    const newIndex = tasks.findIndex(task => task.id === over.id);
+
+    const updatedTasks = arrayMove(tasks, oldIndex, newIndex);  // Move task in array
+
+    // Update the order based on new index positions
+    const tasksWithNewOrder = updatedTasks.map((task, index) => ({
+      ...task,
+      order: index + 1, // Set new order value
+    }));
+
+    console.log(tasksWithNewOrder);
+
+    setTasks(tasksWithNewOrder);  // Update state with reordered tasks
+    saveTaskOrderToDatabase(tasksWithNewOrder);  // Persist changes to the server
+  };
+
+  const saveTaskOrderToDatabase = async (tasks) => {
+    for (const task of tasks) {
+      try {
+        await fetch(`http://localhost:8000/tasks/${task.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(task),  // Send updated task with new order
+        });
+      } catch (error) {
+        console.error('Error updating task order:', error);
+      }
+    }
+  };
+
     
 
 
   return (
       <div className={styles.container}>
           <Form addTask={addTask} tasks={tasks}/>
-      <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask} updateTask={updateTask}/>
+          <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
+            <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask} updateTask={updateTask}/>
+          </DndContext>
       </div>
   )
 }
