@@ -261,7 +261,7 @@ const ToDoList = () => {
 
   return (
       <div className={styles.container}>
-          <Form addTask={addTask}/>
+          <Form addTask={addTask} tasks={tasks}/>
       <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask} updateTask={updateTask}/>
       </div>
   )

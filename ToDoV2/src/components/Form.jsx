@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Form.module.css';
 
-const Form = ({ addTask }) => {
+const Form = ({ addTask, tasks }) => {
 
   const [newTaskTitle, setNewTaskTitle] = useState('');
   const inputRef = useRef(null);
@@ -14,6 +14,7 @@ const Form = ({ addTask }) => {
       id: crypto.randomUUID(),
       title: newTaskTitle,
       isChecked: false,
+      order: tasks.length + 1
     };
 
     addTask(newTask);
