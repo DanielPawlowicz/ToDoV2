@@ -284,13 +284,15 @@ const ToDoList = () => {
 
   const saveTaskOrderToDatabase = async (tasks) => {
     for (const task of tasks) {
+      const taskWithoutSubtasks = { ...task };
+      delete taskWithoutSubtasks.subtasks;
       try {
-        await fetch(`http://localhost:8000/tasks/${task.id}`, {
+        await fetch(`http://localhost:8000/tasks/${taskWithoutSubtasks.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(task),  // Send updated task with new order
+          body: JSON.stringify(taskWithoutSubtasks),  // Send updated task with new order
         });
       } catch (error) {
         console.error('Error updating task order:', error);

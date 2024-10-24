@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Task.module.css';
 import { FaAngleDown, FaAngleUp, FaBars } from 'react-icons/fa';
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import DialogBox from './DialogBox';
 import SubtaskForm from './SubtaskForm';
 
@@ -62,7 +63,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
 
   return (
     <li
-      ref={setNodeRef} style={style} {...attributes} {...listeners}
+      ref={setNodeRef} style={style} {...attributes}
       className={isSub ? styles.subtask : styles.superiorTask}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -90,17 +91,25 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
           }
           {/* Ensure that subtasks exist before rendering the toggle button */}
           {Array.isArray(task.subtasks) && task.subtasks.length > 0 && (
-            <button className={styles.toggle_button} onClick={toggleSubtasks}>
-              {showSubtasks ? <FaAngleUp className={styles.arrows} /> : <FaAngleDown className={styles.arrows}/>}
+            <button className={styles.toggle_button} onClick={(e) => {
+              e.stopPropagation(); // Prevent the drag event from firing
+              toggleSubtasks();
+            }}>
+              {showSubtasks ? <FaAngleUp className={styles.arrows} /> : <FaAngleDown className={styles.arrows} />}
             </button>
           )}
         </div>
         {isHovered && (
-          <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide}>
-            <FaBars className={styles.FaBars}/>
-            {/* <FaBars className={styles.FaBars} style={{ fontSize: 13, color: '#aaa' }} /> */}
-            {showDialogBox && <DialogBox task={task} isSub={isSub} deleteTask={deleteTask} setIsSubtaskFormVisible={setIsSubtaskFormVisible}/>}
-          </div>
+          <>
+            <div {...listeners} className={styles.dragHandle}>
+              <FaArrowRightArrowLeft />
+            </div>
+            <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide}>
+              <FaBars className={styles.FaBars}/>
+              {/* <FaBars className={styles.FaBars} style={{ fontSize: 13, color: '#aaa' }} /> */}
+              {showDialogBox && <DialogBox task={task} isSub={isSub} deleteTask={deleteTask} setIsSubtaskFormVisible={setIsSubtaskFormVisible}/>}
+            </div>
+          </>
         )}
       </div>
       {/* Render subtasks if the toggle state is true */}
