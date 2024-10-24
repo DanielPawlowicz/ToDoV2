@@ -121,3 +121,13 @@ input[type="checkbox"]:checked {
 .arrows:hover {
     color: #222;
 }
+
+.FaOrder{
+    transform: rotate(90deg);
+    color: #aaa;
+}
+
+.FaOrder:hover{
+    cursor: pointer;
+    color: #222;
+}

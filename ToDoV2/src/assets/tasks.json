@@ -4,45 +4,37 @@
       "id": "28a92069-05f3-4c9b-bb83-6dd5893db996",
       "title": "Task1",
       "isChecked": false,
-      "order": 5
+      "order": 4
     },
     {
       "id": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
       "title": "Task 21",
       "isChecked": false,
-      "order": 2,
-      "subtasks": [
-        {
-          "id": "1436",
-          "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-          "title": "subtask 3",
-          "isChecked": true
-        },
-        {
-          "id": "99f870a7-e019-4ceb-88dd-57d299f03ea3",
-          "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-          "title": "Subtask 55",
-          "isChecked": true
-        }
-      ]
-    },
-    {
-      "id": "4b732571-c830-4566-aa71-4a6eb354f5a0",
-      "title": "Task title changed",
-      "isChecked": false,
-      "order": 1
+      "order": 2
     },
     {
       "id": "38eb521b-a951-41dc-8ce8-3437e0c622ca",
       "title": "Task 7",
       "isChecked": false,
-      "order": 4
+      "order": 5
     },
     {
       "id": "7014bb31-96aa-4935-bd69-4a2b9a829335",
       "title": "new test 1",
       "isChecked": true,
       "order": 3
+    },
+    {
+      "id": "4c6a2a3c-fd92-4418-b3b1-a9fff119dc8a",
+      "title": "Task new x",
+      "isChecked": false,
+      "order": 6
+    },
+    {
+      "id": "eb8c80c9-0562-454b-b826-d163c37be33c",
+      "title": "Task new xx",
+      "isChecked": false,
+      "order": 6
     }
   ],
   "subtasks": [
@@ -104,6 +96,18 @@
       "id": "04eab583-2dd9-4106-b473-3a2dde513e94",
       "taskId": "060ba8aa-1deb-49f1-9ad7-f5ca45683fbb",
       "title": "Subtask 14.1",
+      "isChecked": false
+    },
+    {
+      "id": "e452fece-d689-414b-99ef-863be569744f",
+      "taskId": "38eb521b-a951-41dc-8ce8-3437e0c622ca",
+      "title": "New Subtask x",
+      "isChecked": false
+    },
+    {
+      "id": "4fd13fd4-7f24-43f3-bd6e-e49bfe9cde68",
+      "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
+      "title": "New subtask xx",
       "isChecked": false
     }
   ]

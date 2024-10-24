@@ -102,7 +102,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
         {isHovered && (
           <>
             <div {...listeners} className={styles.dragHandle}>
-              <FaArrowRightArrowLeft />
+              <FaArrowRightArrowLeft className={styles.FaOrder}/>
             </div>
             <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide}>
               <FaBars className={styles.FaBars}/>
