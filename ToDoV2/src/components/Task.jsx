@@ -132,7 +132,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
       )}
       {
       isSubtaskFormVisible && 
-        <SubtaskForm taskId={task.id} addSubtask={addSubtask} setIsSubtaskFormVisible={setIsSubtaskFormVisible}/>
+        <SubtaskForm taskId={task.id} addSubtask={addSubtask} setIsSubtaskFormVisible={setIsSubtaskFormVisible} subtasks={task.subtasks}/>
       }
     </li>
   );

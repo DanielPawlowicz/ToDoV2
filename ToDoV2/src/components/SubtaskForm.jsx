@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styles from './SubtaskForm.module.css';
 
-const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible }) => {
+const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible, subtasks }) => {
 
     const [newSubtaskTitle, setNewSubtaskTitle] = useState("");
 
@@ -19,6 +19,7 @@ const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible }) => {
         const subtask = {
             id: crypto.randomUUID(),
             taskId: taskId,
+            order: subtasks.length + 1,
             title: newSubtaskTitle,
             isChecked: false
         }
