@@ -25,13 +25,18 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     }));
   };
 
+
+
+  
+
+
   return (
     <>
       <ControlSubtasksToggle subtasksVisibility={toggleAllSubtasksVisibility} setSubtasksVisibility={setToggleAllSubtasksVisibility}/>
       <ul className={styles.taskList}>
         <SortableContext items={tasks.map(task => task.id)}>
           {tasks.map((task) => (
-            <React.Fragment key={task.id}>
+            <React.Fragment key={task.id}>  
               <Task
                 task={task}
                 onChange={taskUpdate}

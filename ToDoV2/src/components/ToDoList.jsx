@@ -18,7 +18,7 @@ const ToDoList = () => {
         try {
           // Fetch tasks and subtasks from the correct endpoints
           const tasksRes = await fetch('http://localhost:8000/tasks?_sort=order&_order=asc');
-          const subtasksRes = await fetch('http://localhost:8000/subtasks');
+          const subtasksRes = await fetch('http://localhost:8000/subtasks?_sort=order&_order=asc');
           
           const tasksData = await tasksRes.json();
           const subtasksData = await subtasksRes.json();

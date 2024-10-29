@@ -8,8 +8,13 @@ import SubtaskForm from './SubtaskForm';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import { SortableContext } from '@dnd-kit/sortable';
+import { DndContext, closestCorners } from '@dnd-kit/core'
+import { arrayMove } from '@dnd-kit/sortable'
+import Subtask from './Subtask';
 
-const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask }) => {
+
+const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
@@ -58,6 +63,46 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
 
     updateTask(updatedTask, isSub);
     setNewTaskTitle('');
+  };
+
+
+  // DND subtasks
+  const handleSubtaskDragEnd = ({ active, over }) => {
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = task.subtasks.findIndex((sub) => sub.id === active.id);
+    const newIndex = task.subtasks.findIndex((sub) => sub.id === over.id);
+
+    const updatedSubtasks = arrayMove(task.subtasks, oldIndex, newIndex).map((subtask, index) => ({
+      ...subtask,
+      order: index + 1,
+    }));
+
+    console.log(updatedSubtasks)
+
+    // Update parent task with reordered subtasks
+    const updatedTask = { ...task, subtasks: updatedSubtasks };
+    console.log(updatedTask)
+    saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
+    // Here update state setTasks()
+  };
+
+  const saveSubtaskOrderToDatabase = async (subtasks) => {
+    for (const subtask of subtasks) {
+      console.log(subtask.id)
+      try {
+        await fetch(`http://localhost:8000/subtasks/${subtask.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(subtask),
+        });
+      } catch (error) {
+        console.error('Error updating subtask order:', error);
+      }
+      console.log("done for: " + subtask)
+    }
   };
 
 
@@ -114,21 +159,26 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
       </div>
       {/* Render subtasks if the toggle state is true */}
       {Array.isArray(task.subtasks) && showSubtasks && (
-        <ul>
-          {task.subtasks.map((subtask) => (
-            <Task
-              key={subtask.id}
-              task={subtask}
-              isSub={true}
-              onChange={subtaskChange}
-              subtaskChange={subtaskChange}
-              showSubtasks={false} // Subtasks within subtasks are collapsed by default
-              toggleSubtasks={null} // Subtasks shouldn't have a toggle button
-              deleteTask={deleteTask}
-              updateTask={updateTask}
-            />
-          ))}
-        </ul>
+        <DndContext onDragEnd={handleSubtaskDragEnd} collisionDetection={closestCorners}>
+        <SortableContext items={task.subtasks.map(subtask => subtask.id)}>
+          <ul>
+            {task.subtasks.map((subtask) => (
+              <Subtask
+                key={subtask.id}
+                task={subtask}
+                isSub={true}
+                onChange={subtaskChange}
+                subtaskChange={subtaskChange}
+                showSubtasks={false} // Subtasks within subtasks are collapsed by default
+                toggleSubtasks={null} // Subtasks shouldn't have a toggle button
+                deleteTask={deleteTask}
+                updateTask={updateTask}
+                handleSubtaskDragEnd={handleSubtaskDragEnd}
+              />
+            ))}
+          </ul>
+        </SortableContext>
+        </DndContext>
       )}
       {
       isSubtaskFormVisible && 
