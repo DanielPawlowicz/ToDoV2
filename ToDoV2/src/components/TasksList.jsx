@@ -4,7 +4,7 @@ import styles from './TasksList.module.css';
 import ControlSubtasksToggle from './ControlSubtasksToggle';
 import { SortableContext } from '@dnd-kit/sortable';
 
-const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask }) => {
+const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask, setTasks }) => {
   const [openSubtasks, setOpenSubtasks] = useState({});
   const [toggleAllSubtasksVisibility, setToggleAllSubtasksVisibility] = useState(false);
 
@@ -26,6 +26,13 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   };
 
 
+  const updateSubtasksOrder = (updatedTask) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === updatedTask.id ? updatedTask : task
+      )
+    );
+  };
 
   
 
@@ -46,6 +53,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
                 deleteTask={deleteTask}
                 addSubtask={addSubtask}
                 updateTask={updateTask}
+                updateSubtasksOrder={updateSubtasksOrder}
                 />
             </React.Fragment>
           ))}

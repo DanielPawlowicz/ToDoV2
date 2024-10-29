@@ -14,7 +14,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 import Subtask from './Subtask';
 
 
-const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask}) => {
+const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
@@ -84,7 +84,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
     const updatedTask = { ...task, subtasks: updatedSubtasks };
     console.log(updatedTask)
     saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
-    // Here update state setTasks()
+    updateSubtasksOrder(updatedTask);
   };
 
   const saveSubtaskOrderToDatabase = async (subtasks) => {

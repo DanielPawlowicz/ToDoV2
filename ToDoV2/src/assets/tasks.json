@@ -35,7 +35,7 @@
     {
       "id": "61831e37-a279-4eb2-af8f-e391cfbcd891",
       "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-      "order": 2,
+      "order": 1,
       "title": "Subtask 1",
       "isChecked": false
     },
@@ -56,7 +56,7 @@
     {
       "id": "d8ac696d-bf1e-4970-8e7c-957b38dd898c",
       "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-      "order": 1,
+      "order": 2,
       "title": "Subtask 3",
       "isChecked": false
     },
