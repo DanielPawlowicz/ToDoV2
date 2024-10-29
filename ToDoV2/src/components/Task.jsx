@@ -14,7 +14,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 import Subtask from './Subtask';
 
 
-const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder}) => {
+const Task = ({ task, isSub=false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
@@ -78,18 +78,14 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
       order: index + 1,
     }));
 
-    console.log(updatedSubtasks)
-
     // Update parent task with reordered subtasks
     const updatedTask = { ...task, subtasks: updatedSubtasks };
-    console.log(updatedTask)
     saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
     updateSubtasksOrder(updatedTask);
   };
 
   const saveSubtaskOrderToDatabase = async (subtasks) => {
     for (const subtask of subtasks) {
-      console.log(subtask.id)
       try {
         await fetch(`http://localhost:8000/subtasks/${subtask.id}`, {
           method: 'PUT',
@@ -101,7 +97,6 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
       } catch (error) {
         console.error('Error updating subtask order:', error);
       }
-      console.log("done for: " + subtask)
     }
   };
 
@@ -117,7 +112,7 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
         <div className={styles.secondContainer}>
           <input
             type="checkbox"
-            className={isSub ? styles.checkboxSub : styles.checkboxSup}
+            className={styles.checkboxSup}
             checked={task.isChecked}
             onChange={(e) => handleCheckboxChange(e, task)}
           />
@@ -151,7 +146,6 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
             </div>
             <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide}>
               <FaBars className={styles.FaBars}/>
-              {/* <FaBars className={styles.FaBars} style={{ fontSize: 13, color: '#aaa' }} /> */}
               {showDialogBox && <DialogBox task={task} isSub={isSub} deleteTask={deleteTask} setIsSubtaskFormVisible={setIsSubtaskFormVisible}/>}
             </div>
           </>

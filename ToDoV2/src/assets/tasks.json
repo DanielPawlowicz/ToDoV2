@@ -42,21 +42,21 @@
     {
       "id": "05670755-c72d-46f9-aac6-cdc8c9124da4",
       "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
-      "order": 2,
+      "order": 1,
       "title": "Subtask 1.1",
       "isChecked": false
     },
     {
       "id": "8a1a77e2-ad6b-4dc1-a4eb-7ee4bcf25856",
       "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-      "order": 3,
+      "order": 2,
       "title": "Subtask 2",
       "isChecked": false
     },
     {
       "id": "d8ac696d-bf1e-4970-8e7c-957b38dd898c",
       "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-      "order": 2,
+      "order": 3,
       "title": "Subtask 3",
       "isChecked": false
     },
@@ -70,14 +70,14 @@
     {
       "id": "eed196b9-fed2-4d4b-af2d-50ac63377ace",
       "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
-      "order": 3,
+      "order": 2,
       "title": "Subtask 1.2",
       "isChecked": false
     },
     {
       "id": "ccd9f7bd-24c0-466e-a589-ff299a294a5d",
       "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
-      "order": 1,
+      "order": 3,
       "title": "Subtask 1.3",
       "isChecked": false
     }

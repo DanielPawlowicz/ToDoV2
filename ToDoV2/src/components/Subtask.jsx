@@ -75,7 +75,7 @@ const Subtask = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, t
               <div className={styles.secondContainer}>
                   <input
                       type="checkbox"
-                      className={isSub ? styles.checkboxSub : styles.checkboxSup}
+                      className={styles.checkboxSub}
                       checked={task.isChecked}
                       onChange={(e) => handleCheckboxChange(e, task)}
                   />
@@ -92,15 +92,6 @@ const Subtask = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, t
                           </form>
                       </>
                   }
-                  {/* Ensure that subtasks exist before rendering the toggle button */}
-                  {Array.isArray(task.subtasks) && task.subtasks.length > 0 && (
-                      <button className={styles.toggle_button} onClick={(e) => {
-                          e.stopPropagation(); // Prevent the drag event from firing
-                          toggleSubtasks();
-                      }}>
-                          {showSubtasks ? <FaAngleUp className={styles.arrows} /> : <FaAngleDown className={styles.arrows} />}
-                      </button>
-                  )}
               </div>
               {isHovered && (
                   <>
@@ -109,7 +100,6 @@ const Subtask = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, t
                       </div>
                       <div className={styles.barsContainer} onMouseEnter={handleDialogBoxShow} onMouseLeave={handleDialogBoxHide}>
                           <FaBars className={styles.FaBars} />
-                          {/* <FaBars className={styles.FaBars} style={{ fontSize: 13, color: '#aaa' }} /> */}
                           {showDialogBox && <DialogBox task={task} isSub={isSub} deleteTask={deleteTask} setIsSubtaskFormVisible={setIsSubtaskFormVisible} />}
                       </div>
                   </>
