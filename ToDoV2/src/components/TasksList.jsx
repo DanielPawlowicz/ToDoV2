@@ -70,6 +70,14 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             taskUpdate(updatedTask); // Call taskUpdate to save the change
           }
         }
+      } else if (event.key === "s") {
+        // Toggle subtasks for the focused task
+        if (focused !== null) {
+          setOpenSubtasks((prevOpenSubtasks) => ({
+            ...prevOpenSubtasks,
+            [focused]: !prevOpenSubtasks[focused], // Toggle the focused task's subtasks
+          }));
+        }
       }
     };
 
