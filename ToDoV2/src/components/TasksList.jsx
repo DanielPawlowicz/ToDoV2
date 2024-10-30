@@ -69,6 +69,23 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     };
   }, [tasks, focused]);
 
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Check if the click target is outside of the task list
+      if (!event.target.closest(`.${styles.taskList}`)) {
+        setFocused(null); // Set focused to null if clicked on whitespace
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   // useEffect(() => {
   //   console.log("Focused task ID:", focused)
   // }, [focused]);
