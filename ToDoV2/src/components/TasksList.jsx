@@ -8,6 +8,8 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   const [openSubtasks, setOpenSubtasks] = useState({});
   const [toggleAllSubtasksVisibility, setToggleAllSubtasksVisibility] = useState(false);
 
+  const  [focused, setFocused] = useState(null);
+
   // Sync the openSubtasks state with toggleAllSubtasksVisibility
   useEffect(() => {
     const newOpenSubtasks = {};
@@ -34,6 +36,42 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     );
   };
 
+  // console.log(focused);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowDown") {
+        if(focused === null){
+          setFocused(tasks[0].id);
+        } else {
+          const currentIndex = tasks.findIndex(task => task.id === focused);
+          const nextIndex = (currentIndex + 1) % tasks.length; // Wrap around to the first task if at the end
+          setFocused(tasks[nextIndex]?.id);
+        }
+      } else if (event.key === "ArrowUp") {
+        if (focused === null) {
+          const lastIndex = tasks.length - 1;
+          setFocused(tasks[lastIndex]?.id);
+        } else {
+          // Find the index of the currently focused task
+          const currentIndex = tasks.findIndex(task => task.id === focused);
+          const previousIndex = (currentIndex - 1 + tasks.length) % tasks.length; // Wrap around to the last task if at the beginning
+          setFocused(tasks[previousIndex]?.id);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [tasks, focused]);
+
+  // useEffect(() => {
+  //   console.log("Focused task ID:", focused)
+  // }, [focused]);
   
 
 
@@ -54,6 +92,8 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
                 addSubtask={addSubtask}
                 updateTask={updateTask}
                 updateSubtasksOrder={updateSubtasksOrder}
+                setFocused={setFocused}
+                focused={focused}
                 />
             </React.Fragment>
           ))}

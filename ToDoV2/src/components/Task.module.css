@@ -9,6 +9,10 @@ li:hover{
     transform: scale(1.002);
 }
 
+li.focused{
+    border: 0.5px solid #aaa;
+}
+
 .inlineContainer {
     display: flex;
     justify-content: space-between;

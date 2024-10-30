@@ -23,11 +23,11 @@ const Form = ({ addTask, tasks }) => {
 
 
   // Focus the input element after every render
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [newTaskTitle]);
+  // useEffect(() => {
+  //   if (inputRef.current) {
+  //     inputRef.current.focus();
+  //   }
+  // }, [newTaskTitle]);
 
   
   return (

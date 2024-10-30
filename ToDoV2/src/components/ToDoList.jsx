@@ -308,11 +308,9 @@ const ToDoList = () => {
     }
   };
 
-    
-
 
   return (
-      <div className={styles.container}>
+    <div className={styles.container}>
           <Form addTask={addTask} tasks={tasks}/>
           <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
             <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask} updateTask={updateTask} setTasks={setTasks}/>
