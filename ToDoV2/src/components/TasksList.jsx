@@ -61,6 +61,15 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           const previousIndex = (currentIndex - 1 + tasks.length) % tasks.length; // Wrap around to the last task if at the beginning
           setFocused(tasks[previousIndex]?.id);
         }
+      } else if (event.key === "c") {
+        // Toggle check-off for the focused task
+        if (focused !== null) {
+          const taskIndex = tasks.findIndex((task) => task.id === focused);
+          if (taskIndex !== -1) {
+            const updatedTask = { ...tasks[taskIndex], isChecked: !tasks[taskIndex].isChecked };
+            taskUpdate(updatedTask); // Call taskUpdate to save the change
+          }
+        }
       }
     };
 
@@ -93,6 +102,31 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
 // Binding keys
 
+  // useEffect(()=>{
+  //   const handleKeyDown = (event) => {
+  //     switch(event.key){
+  //       case 'c':{
+  //         // check off
+  //       }
+  //       case 'd':{
+  //         // delete
+  //       }
+  //       case 'a':{
+  //         // add subtask
+  //       }
+  //       case 's':{
+  //         // toggle subtasks
+  //       }
+  //       // ctrl + arrowDown/Up -> change order 
+  //     }
+  //   }
+
+  //   document.addEventListener("keydown", handleKeyDown)
+
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // },[])  
 
 
 
