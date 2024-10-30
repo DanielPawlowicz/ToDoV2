@@ -36,8 +36,11 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     );
   };
 
-  // console.log(focused);
 
+
+
+// Focuse for binding keys
+  
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "ArrowDown") {
@@ -86,10 +89,12 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log("Focused task ID:", focused)
-  // }, [focused]);
-  
+
+
+// Binding keys
+
+
+
 
 
   return (
