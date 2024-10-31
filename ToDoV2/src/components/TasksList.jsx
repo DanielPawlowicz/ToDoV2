@@ -10,6 +10,8 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
   const  [focused, setFocused] = useState(null);
 
+  const [isSubtaskFormVisible, setIsSubtaskFormVisible] = useState(false);
+
   // Sync the openSubtasks state with toggleAllSubtasksVisibility
   useEffect(() => {
     const newOpenSubtasks = {};
@@ -78,6 +80,30 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             [focused]: !prevOpenSubtasks[focused], // Toggle the focused task's subtasks
           }));
         }
+      } else if (event.key === "d") {
+        if (focused !== null) {
+          const taskIndex = tasks.findIndex((task) => task.id === focused);
+          if (taskIndex !== -1) {
+            const deletingTask = tasks[taskIndex];
+            // Show confirmation prompt
+            const confirmDelete = window.confirm("Are you sure you want to delete this task?");
+            if (confirmDelete) {
+              // Call deleteTask with deletingTask and isSub=false
+              deleteTask(deletingTask, false);
+              setFocused(null); // Clear focus after deletion
+            }
+          }
+        }
+      } else if (event.key === "a" && focused) {
+        const taskIndex = tasks.findIndex((task) => task.id === focused);
+        if (taskIndex !== -1) {
+          const taskId = tasks[taskIndex].id;
+          setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+              task.id === taskId ? { ...task, isSubtaskFormVisible: true } : task
+            )
+          );
+        }
       }
     };
 
@@ -108,37 +134,6 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
 
 
-// Binding keys
-
-  // useEffect(()=>{
-  //   const handleKeyDown = (event) => {
-  //     switch(event.key){
-  //       case 'c':{
-  //         // check off
-  //       }
-  //       case 'd':{
-  //         // delete
-  //       }
-  //       case 'a':{
-  //         // add subtask
-  //       }
-  //       case 's':{
-  //         // toggle subtasks
-  //       }
-  //       // ctrl + arrowDown/Up -> change order 
-  //     }
-  //   }
-
-  //   document.addEventListener("keydown", handleKeyDown)
-
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // },[])  
-
-
-
-
   return (
     <>
       <ControlSubtasksToggle subtasksVisibility={toggleAllSubtasksVisibility} setSubtasksVisibility={setToggleAllSubtasksVisibility}/>
@@ -157,7 +152,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
                 updateTask={updateTask}
                 updateSubtasksOrder={updateSubtasksOrder}
                 setFocused={setFocused}
-                focused={focused}
+                focused={focused === task.id ? task.id : null}
                 />
             </React.Fragment>
           ))}

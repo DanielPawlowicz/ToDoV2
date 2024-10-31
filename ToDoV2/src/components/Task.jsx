@@ -14,7 +14,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 import Subtask from './Subtask';
 
 
-const Task = ({ task, isSub=false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder, setFocused, focused}) => {
+const Task = ({ task, isSub=false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder, setFocused, focused, isSubtaskFormVisible, setIsSubtaskFormVisible}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
@@ -31,8 +31,6 @@ const Task = ({ task, isSub=false, onChange, subtaskChange, showSubtasks, toggle
 
   const handleDialogBoxShow = () => setShowDialogBox(true);
   const handleDialogBoxHide = () => setShowDialogBox(false);
-
-  const [isSubtaskFormVisible, setIsSubtaskFormVisible] = useState(false);
 
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: task.id });
 

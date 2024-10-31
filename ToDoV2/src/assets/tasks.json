@@ -1,12 +1,6 @@
 {
   "tasks": [
     {
-      "id": "28a92069-05f3-4c9b-bb83-6dd5893db996",
-      "title": "Task1",
-      "isChecked": false,
-      "order": 4
-    },
-    {
       "id": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
       "title": "Task 21",
       "isChecked": false,
@@ -21,12 +15,18 @@
     {
       "id": "7014bb31-96aa-4935-bd69-4a2b9a829335",
       "title": "new test 1",
-      "isChecked": false,
+      "isChecked": true,
       "order": 2
     },
     {
-      "id": "1c5e60b9-4a8d-41b2-b1f3-6f6dd5afed8b",
-      "title": "Tak",
+      "id": "48519ab6-fe4a-457a-a09e-c4154413839d",
+      "title": "New tAsk 2",
+      "isChecked": false,
+      "order": 4
+    },
+    {
+      "id": "8bec588c-c12e-49d7-b2ac-edec0ab239ad",
+      "title": "Task 2",
       "isChecked": false,
       "order": 5
     }
