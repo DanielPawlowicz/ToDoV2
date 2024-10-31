@@ -3,14 +3,26 @@ import Task from './Task';
 import styles from './TasksList.module.css';
 import ControlSubtasksToggle from './ControlSubtasksToggle';
 import { SortableContext } from '@dnd-kit/sortable';
+import SubtaskForm from './SubtaskForm';
 
 const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask, setTasks }) => {
   const [openSubtasks, setOpenSubtasks] = useState({});
   const [toggleAllSubtasksVisibility, setToggleAllSubtasksVisibility] = useState(false);
 
-  const  [focused, setFocused] = useState(null);
+  const [focused, setFocused] = useState(null);
+  const [focusedTask, setFocusedTask] = useState(null);
+  
+  const [isSubtaskFormVisibleParent, setIsSubtaskFormVisibleParent] = useState(false);
+  const [subtaskFormTaskId, setSubtaskFormTaskId] = useState(null);
 
-  const [isSubtaskFormVisible, setIsSubtaskFormVisible] = useState(false);
+
+  useEffect(() => {
+    // Update focusedTask whenever the focused ID changes
+    const task = tasks.find((task) => task.id === focused);
+    setFocusedTask(task || null); // Set to null if no task is focused
+  }, [focused, tasks]);
+
+
 
   // Sync the openSubtasks state with toggleAllSubtasksVisibility
   useEffect(() => {
@@ -95,16 +107,9 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           }
         }
       } else if (event.key === "a" && focused) {
-        const taskIndex = tasks.findIndex((task) => task.id === focused);
-        if (taskIndex !== -1) {
-          const taskId = tasks[taskIndex].id;
-          setTasks((prevTasks) =>
-            prevTasks.map((task) =>
-              task.id === taskId ? { ...task, isSubtaskFormVisible: true } : task
-            )
-          );
+          setSubtaskFormTaskId(focused);
+          setIsSubtaskFormVisibleParent(true);
         }
-      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -158,6 +163,10 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           ))}
         </SortableContext>
       </ul>
+          {
+            isSubtaskFormVisibleParent && 
+            <SubtaskForm taskId={subtaskFormTaskId} addSubtask={addSubtask} setIsSubtaskFormVisible={setIsSubtaskFormVisibleParent} subtasks={focusedTask.subtasks} />
+          }
     </>
     );
 };

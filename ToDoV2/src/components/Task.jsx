@@ -14,11 +14,12 @@ import { arrayMove } from '@dnd-kit/sortable'
 import Subtask from './Subtask';
 
 
-const Task = ({ task, isSub=false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder, setFocused, focused, isSubtaskFormVisible, setIsSubtaskFormVisible}) => {
+const Task = ({ task, isSub=false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder, setFocused, focused}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [isSubtaskFormVisible, setIsSubtaskFormVisible] = useState(false);
 
   const handleMouseEnter = () => { 
     setIsHovered(true);
