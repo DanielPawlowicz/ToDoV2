@@ -112,24 +112,12 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
       } else if (event.key === "a" && focused) {
         setSubtaskFormTaskId(focused);
         setIsSubtaskFormVisibleParent(true);
-
-        // Use setTimeout to ensure DOM updates are processed
-        setTimeout(() => {
-          const taskElement = taskRefs.current[focused];
-          console.log("Focused Task Element:", taskElement); // Log the element
-
-          if (taskElement) {
-            const { bottom, left } = taskElement.getBoundingClientRect();
-            setSubtaskFormPosition({
-              top: bottom + window.scrollY, // Account for page scroll
-              left: left + window.scrollX,
-            });
-            console.log("Subtask Form Position:", {
-              top: bottom + window.scrollY,
-              left: left + window.scrollX,
-            });
-          }
-        }, 0);
+        
+      } else if (event.key === "ArrowRight"){
+        toggleSubtasks(focused);
+        // here change the focuse to the first subtask
+      } else if (event.key === "ArrowLeft") {
+        toggleSubtasks(focused);
       }
     };
 
