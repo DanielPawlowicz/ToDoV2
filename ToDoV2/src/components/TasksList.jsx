@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Task from './Task';
 import styles from './TasksList.module.css';
 import ControlSubtasksToggle from './ControlSubtasksToggle';
@@ -14,6 +14,9 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   
   const [isSubtaskFormVisibleParent, setIsSubtaskFormVisibleParent] = useState(false);
   const [subtaskFormTaskId, setSubtaskFormTaskId] = useState(null);
+  const [subtaskFormPosition, setSubtaskFormPosition] = useState({ top: 0, left: 0 });
+
+  const taskRefs = useRef({});
 
 
   useEffect(() => {
@@ -107,9 +110,27 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           }
         }
       } else if (event.key === "a" && focused) {
-          setSubtaskFormTaskId(focused);
-          setIsSubtaskFormVisibleParent(true);
-        }
+        setSubtaskFormTaskId(focused);
+        setIsSubtaskFormVisibleParent(true);
+
+        // Use setTimeout to ensure DOM updates are processed
+        setTimeout(() => {
+          const taskElement = taskRefs.current[focused];
+          console.log("Focused Task Element:", taskElement); // Log the element
+
+          if (taskElement) {
+            const { bottom, left } = taskElement.getBoundingClientRect();
+            setSubtaskFormPosition({
+              top: bottom + window.scrollY, // Account for page scroll
+              left: left + window.scrollX,
+            });
+            console.log("Subtask Form Position:", {
+              top: bottom + window.scrollY,
+              left: left + window.scrollX,
+            });
+          }
+        }, 0);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -141,32 +162,49 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
   return (
     <>
-      <ControlSubtasksToggle subtasksVisibility={toggleAllSubtasksVisibility} setSubtasksVisibility={setToggleAllSubtasksVisibility}/>
-      <ul className={styles.taskList}>
-        <SortableContext items={tasks.map(task => task.id)}>
-          {tasks.map((task) => (
-            <React.Fragment key={task.id}>  
-              <Task
-                task={task}
-                onChange={taskUpdate}
-                subtaskChange={subtaskUpdate}
-                showSubtasks={openSubtasks[task.id]} // Use openSubtasks state to control visibility
-                toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
-                deleteTask={deleteTask}
-                addSubtask={addSubtask}
-                updateTask={updateTask}
-                updateSubtasksOrder={updateSubtasksOrder}
-                setFocused={setFocused}
-                focused={focused === task.id ? task.id : null}
+      <div style={{ position: 'relative' }}>
+        <ControlSubtasksToggle subtasksVisibility={toggleAllSubtasksVisibility} setSubtasksVisibility={setToggleAllSubtasksVisibility}/>
+        <ul className={styles.taskList}>
+          <SortableContext items={tasks.map(task => task.id)}>
+            {tasks.map((task) => (
+              <React.Fragment key={task.id}>  
+                <Task
+                  task={task}
+                  onChange={taskUpdate}
+                  subtaskChange={subtaskUpdate}
+                  showSubtasks={openSubtasks[task.id]} // Use openSubtasks state to control visibility
+                  toggleSubtasks={() => toggleSubtasks(task.id)} // Pass the toggle function to each task
+                  deleteTask={deleteTask}
+                  addSubtask={addSubtask}
+                  updateTask={updateTask}
+                  updateSubtasksOrder={updateSubtasksOrder}
+                  setFocused={setFocused}
+                  focused={focused === task.id ? task.id : null}
+                  />
+              </React.Fragment>
+            ))}
+          </SortableContext>
+        </ul>
+            {
+              isSubtaskFormVisibleParent && 
+              // <div
+              //   style={{
+              //     position: 'absolute',
+              //     top: subtaskFormPosition.top + 'px',
+              //     left: subtaskFormPosition.left + 'px',
+              //     zIndex: 1000,
+              //     backgroundColor: 'black',
+              //   }}
+              // >
+                <SubtaskForm
+                  taskId={subtaskFormTaskId}
+                  addSubtask={addSubtask}
+                  setIsSubtaskFormVisible={setIsSubtaskFormVisibleParent}
+                  subtasks={focusedTask?.subtasks || []}
                 />
-            </React.Fragment>
-          ))}
-        </SortableContext>
-      </ul>
-          {
-            isSubtaskFormVisibleParent && 
-            <SubtaskForm taskId={subtaskFormTaskId} addSubtask={addSubtask} setIsSubtaskFormVisible={setIsSubtaskFormVisibleParent} subtasks={focusedTask.subtasks} />
-          }
+              // </div>
+            }
+      </div>
     </>
     );
 };
