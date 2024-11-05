@@ -63,21 +63,40 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "ArrowDown") {
-        if(focused === null){
+        if (focusedSubtaskId !== null) {
+          // Find the focused task and its subtasks
+          const focusedTaskSubtasks = focusedTask?.subtasks || [];
+          const currentIndex = focusedTaskSubtasks.findIndex(subtask => subtask.id === focusedSubtaskId);
+
+          if (currentIndex !== -1) {
+            // Move to the next subtask, wrapping around if at the end
+            const nextIndex = (currentIndex + 1) % focusedTaskSubtasks.length;
+            setFocusedSubtaskId(focusedTaskSubtasks[nextIndex]?.id);
+          }
+        } else if (focused === null) {
           setFocused(tasks[0].id);
         } else {
           const currentIndex = tasks.findIndex(task => task.id === focused);
-          const nextIndex = (currentIndex + 1) % tasks.length; // Wrap around to the first task if at the end
+          const nextIndex = (currentIndex + 1) % tasks.length;
           setFocused(tasks[nextIndex]?.id);
         }
       } else if (event.key === "ArrowUp") {
-        if (focused === null) {
+        if (focusedSubtaskId !== null) {
+          // Find the focused task and its subtasks
+          const focusedTaskSubtasks = focusedTask?.subtasks || [];
+          const currentIndex = focusedTaskSubtasks.findIndex(subtask => subtask.id === focusedSubtaskId);
+
+          if (currentIndex !== -1) {
+            // Move to the previous subtask, wrapping around if at the beginning
+            const previousIndex = (currentIndex - 1 + focusedTaskSubtasks.length) % focusedTaskSubtasks.length;
+            setFocusedSubtaskId(focusedTaskSubtasks[previousIndex]?.id);
+          }
+        } else if (focused === null) {
           const lastIndex = tasks.length - 1;
           setFocused(tasks[lastIndex]?.id);
         } else {
-          // Find the index of the currently focused task
           const currentIndex = tasks.findIndex(task => task.id === focused);
-          const previousIndex = (currentIndex - 1 + tasks.length) % tasks.length; // Wrap around to the last task if at the beginning
+          const previousIndex = (currentIndex - 1 + tasks.length) % tasks.length;
           setFocused(tasks[previousIndex]?.id);
         }
       } else if (event.key === "c") {
@@ -140,7 +159,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [tasks, focused]);
+  }, [tasks, focused, focusedSubtaskId, focusedTask]);
 
   console.log(focused);
 
