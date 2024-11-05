@@ -13,6 +13,10 @@ li.focused{
     border: 0.5px solid #aaa;
 }
 
+.focusedSubtask{
+    border: 1px solid black;
+}
+
 .inlineContainer {
     display: flex;
     justify-content: space-between;

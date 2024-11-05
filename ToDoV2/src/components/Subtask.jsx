@@ -12,15 +12,21 @@ import { SortableContext } from '@dnd-kit/sortable';
 import { DndContext, closestCorners } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 
-const Subtask = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, handleSubtaskDragEnd }) => {
+const Subtask = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, handleSubtaskDragEnd, focused, setFocused, focusedSubtaskId}) => {
 
     const [isHovered, setIsHovered] = useState(false);
     const [showDialogBox, setShowDialogBox] = useState(false);
     const [isTaskUpdating, setIsTaskUpdating] = useState(false);
     const [newTaskTitle, setNewTaskTitle] = useState('');
 
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+        setFocused(task.id);
+    }
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+        setFocused(null);
+    }
 
     const handleDialogBoxShow = () => setShowDialogBox(true);
     const handleDialogBoxHide = () => setShowDialogBox(false);
@@ -67,7 +73,9 @@ const Subtask = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, t
   return (
       <li
           ref={setNodeRef} style={style} {...attributes}
-          className={isSub ? styles.subtask : styles.superiorTask}
+        //   className={`${styles.subtask} ${focused === task.id ? styles.focusedSubtask : ''}`}
+          className={`${styles.subtask} ${focused === task.id || focusedSubtaskId === task.id ? styles.focusedSubtask : ''}`}
+        //   className={`${styles.subtask} ${styles.focusedSubtask}`}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
       >

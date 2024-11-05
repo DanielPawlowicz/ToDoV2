@@ -16,6 +16,8 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   const [subtaskFormTaskId, setSubtaskFormTaskId] = useState(null);
   const [subtaskFormPosition, setSubtaskFormPosition] = useState({ top: 0, left: 0 });
 
+  const [focusedSubtaskId, setFocusedSubtaskId] = useState(null);
+
   const taskRefs = useRef({});
 
 
@@ -114,10 +116,21 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
         setIsSubtaskFormVisibleParent(true);
         
       } else if (event.key === "ArrowRight"){
-        toggleSubtasks(focused);
-        // here change the focuse to the first subtask
+        if (focused !== null) {
+          const task = tasks.find((t) => t.id === focused);
+          if (task) {
+            if (!openSubtasks[task.id]) {
+              toggleSubtasks(task.id);
+            }
+
+            if (task.subtasks && task.subtasks.length > 0) {
+              setFocusedSubtaskId(task.subtasks[0].id);
+            }
+          }
+        }
       } else if (event.key === "ArrowLeft") {
-        toggleSubtasks(focused);
+        // toggleSubtasks(focused);
+        setFocusedSubtaskId(null);
       }
     };
 
@@ -129,6 +142,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     };
   }, [tasks, focused]);
 
+  console.log(focused);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -168,6 +182,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
                   updateSubtasksOrder={updateSubtasksOrder}
                   setFocused={setFocused}
                   focused={focused === task.id ? task.id : null}
+                  focusedSubtaskId={focusedSubtaskId}
                   />
               </React.Fragment>
             ))}
