@@ -54,13 +54,6 @@
       "isChecked": true
     },
     {
-      "id": "d8ac696d-bf1e-4970-8e7c-957b38dd898c",
-      "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-      "order": 3,
-      "title": "Subtask 3",
-      "isChecked": false
-    },
-    {
       "id": "7adc503f-2dae-4bfd-b833-d23023f93463",
       "taskId": "38eb521b-a951-41dc-8ce8-3437e0c622ca",
       "order": 1,

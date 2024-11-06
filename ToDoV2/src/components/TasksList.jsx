@@ -132,8 +132,22 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             [focused]: !prevOpenSubtasks[focused], // Toggle the focused task's subtasks
           }));
         }
+        // delete focused
       } else if (event.key === "d") {
-        if (focused !== null) {
+        // if focused is the subtask
+        if (focusedSubtaskId !== null){
+          const subtaskIndex = focusedTask?.subtasks?.findIndex(subtask => subtask.id === focusedSubtaskId);
+          if (subtaskIndex !== -1 && subtaskIndex !== undefined) {
+            const deletingSubtask = focusedTask.subtasks[subtaskIndex];
+            const confirmDelete = window.confirm("Are you sure you want to delete this task?");
+            if (confirmDelete) {
+              // Call deleteTask with deletingTask and isSub=false
+              deleteTask(deletingSubtask, true);
+              setFocused(null); // Clear focus after deletion
+            }
+          }
+        } // if focused is the task
+        else if (focused !== null) {
           const taskIndex = tasks.findIndex((task) => task.id === focused);
           if (taskIndex !== -1) {
             const deletingTask = tasks[taskIndex];
