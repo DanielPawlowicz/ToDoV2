@@ -33,13 +33,6 @@
   ],
   "subtasks": [
     {
-      "id": "61831e37-a279-4eb2-af8f-e391cfbcd891",
-      "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
-      "order": 1,
-      "title": "Subtask 1",
-      "isChecked": false
-    },
-    {
       "id": "05670755-c72d-46f9-aac6-cdc8c9124da4",
       "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
       "order": 1,

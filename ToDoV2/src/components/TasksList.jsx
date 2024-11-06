@@ -143,7 +143,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             if (confirmDelete) {
               // Call deleteTask with deletingTask and isSub=false
               deleteTask(deletingSubtask, true);
-              setFocused(null); // Clear focus after deletion
+              setFocusedSubtaskId(null); // Clear focus after deletion
             }
           }
         } // if focused is the task
