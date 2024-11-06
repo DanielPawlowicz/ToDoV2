@@ -21,15 +21,6 @@ const Form = ({ addTask, tasks }) => {
     setNewTaskTitle('');
   };
 
-
-  // Focus the input element after every render
-  // useEffect(() => {
-  //   if (inputRef.current) {
-  //     inputRef.current.focus();
-  //   }
-  // }, [newTaskTitle]);
-
-
 // Focus on key press
   useEffect(() => {
     const handleKeyDown = (event) => {
