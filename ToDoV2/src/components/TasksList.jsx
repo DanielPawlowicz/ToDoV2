@@ -107,14 +107,6 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
         // Toggle check-off for the focused task
         // if focused is the subtask
         if (focusedSubtaskId !== null){
-          // const focusedTaskSubtasks = focusedTask?.subtasks || [];
-          // const subtaskIndex = focusedTaskSubtasks.find((subtask) => subtask.id === focusedSubtaskId);
-          // // console.log(subtaskIndex)
-          // if(subtaskIndex !== -1) {
-          //   const updatedSubtask = {...subtasks[subtaskIndex], isChecked: !subtasks[subtaskIndex].isChecked}
-          //   subtaskUpdate(updatedSubtask);
-          // }
-
           const subtaskIndex = focusedTask?.subtasks?.findIndex(subtask => subtask.id === focusedSubtaskId);
           if (subtaskIndex !== -1 && subtaskIndex !== undefined) {
             // Toggle the isChecked state for the focused subtask
@@ -124,7 +116,6 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             };
             subtaskUpdate(updatedSubtask); // Call subtaskUpdate to save the change
           }
-
         } // if focused is the task
         else if (focused !== null) {
           const taskIndex = tasks.findIndex((task) => task.id === focused);
