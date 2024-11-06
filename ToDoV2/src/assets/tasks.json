@@ -29,6 +29,12 @@
       "title": "Task 2",
       "isChecked": false,
       "order": 5
+    },
+    {
+      "id": "8000ec03-31c6-4f1d-8e64-36cdc09db5a4",
+      "title": "how to make it",
+      "isChecked": false,
+      "order": 6
     }
   ],
   "subtasks": [
@@ -44,13 +50,6 @@
       "taskId": "d9797f44-1b1d-430e-b347-361c5e9f0f91",
       "order": 2,
       "title": "Subtask 2",
-      "isChecked": true
-    },
-    {
-      "id": "eed196b9-fed2-4d4b-af2d-50ac63377ace",
-      "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
-      "order": 4,
-      "title": "Subtask 1.2",
       "isChecked": true
     },
     {
