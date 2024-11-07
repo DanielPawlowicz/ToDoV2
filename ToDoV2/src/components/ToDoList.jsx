@@ -284,7 +284,7 @@ const ToDoList = () => {
       order: index + 1, // Set new order value
     }));
 
-    console.log(tasksWithNewOrder);
+    // console.log(tasksWithNewOrder);
 
     setTasks(tasksWithNewOrder);  // Update state with reordered tasks
     saveTaskOrderToDatabase(tasksWithNewOrder);  // Persist changes to the server

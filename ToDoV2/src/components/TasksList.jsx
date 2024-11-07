@@ -62,7 +62,14 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "ArrowDown") {
+      // Unfocus tasks and subtasks on Esc key press (first subtask, then task)
+      if (event.key === "Escape") {
+        if(focusedSubtaskId !== null){
+          setFocusedSubtaskId(null);
+        } else if(focused !== null){
+          setFocused(null);
+        }
+      } else if (event.key === "ArrowDown") {
         // if focused is the subtask
         if (focusedSubtaskId !== null) {
           // Find the focused task and its subtasks
