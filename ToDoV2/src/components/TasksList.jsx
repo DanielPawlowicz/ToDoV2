@@ -210,15 +210,8 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
         if (focusedSubtask.order > 0){
           
-          // console.log(focusedTaskSubtasks)
-
-          // console.log(focusedSubtask)
-
           const active = focusedTaskSubtasks[focusedSubtask.order]
           const over = focusedTaskSubtasks[focusedSubtask.order - 1]
-
-          // console.log(active)
-          // console.log(over)
 
           if (!over || active.id === over.id) return;
 
@@ -258,7 +251,27 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
         }
       } else if(event.key === "n"){
-        if (focusedTask.order > 0) {
+        if (focusedSubtask.order > 0) {
+
+          const active = focusedTaskSubtasks[focusedSubtask.order]
+          const over = focusedTaskSubtasks[focusedSubtask.order + 1]
+
+          if (!over || active.id === over.id) return;
+
+          const oldIndex = focusedTaskSubtasks.findIndex((sub) => sub.id === active.id);
+          const newIndex = focusedTaskSubtasks.findIndex((sub) => sub.id === over.id);
+
+          const updatedSubtasks = arrayMove(focusedTaskSubtasks, oldIndex, newIndex).map((subtask, index) => ({
+            ...subtask,
+            order: index + 1,
+          }));
+
+          // Update parent task with reordered subtasks
+          const updatedTask = { ...focusedTask, subtasks: updatedSubtasks };
+          saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
+          updateSubtasksOrder(updatedTask);
+
+        } else if (focusedTask.order > 0) {
 
           const active = focusedTask
           const over = tasks[focusedTask.order]
