@@ -16,19 +16,27 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   
   const [isSubtaskFormVisibleParent, setIsSubtaskFormVisibleParent] = useState(false);
   const [subtaskFormTaskId, setSubtaskFormTaskId] = useState(null);
-  const [subtaskFormPosition, setSubtaskFormPosition] = useState({ top: 0, left: 0 });
+  // const [subtaskFormPosition, setSubtaskFormPosition] = useState({ top: 0, left: 0 });
 
   const [focusedSubtaskId, setFocusedSubtaskId] = useState(null);
+  const [focusedSubtask, setFocusedSubtask] = useState(null);
   // const [focusedTaskIndex, setFocusedTaskIndex] = useState(null);
 
   const taskRefs = useRef({});
 
 
+  // Update focusedTask whenever the focused ID changes
   useEffect(() => {
-    // Update focusedTask whenever the focused ID changes
     const task = tasks.find((task) => task.id === focused);
     setFocusedTask(task || null); // Set to null if no task is focused
   }, [focused, tasks]);
+
+  // Update focusedSubtask whenever the focused ID changes
+  useEffect(() => {
+    const focusedTaskSubtasks = focusedTask?.subtasks || [];
+    const subtask = focusedTaskSubtasks.find((subtask) => subtask.id === focusedSubtaskId);
+    setFocusedSubtask(subtask || null); // Set to null if no task is focused
+  }, [focusedSubtaskId, tasks]);
 
 
 
