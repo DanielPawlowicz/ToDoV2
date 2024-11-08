@@ -14,7 +14,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 import Subtask from './Subtask';
 
 
-const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder, setFocused, focused, focusedSubtaskId }, ref) => {
+const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, toggleSubtasks, deleteTask, addSubtask, updateTask, updateSubtasksOrder, setFocused, focused, focusedSubtaskId, saveSubtaskOrderToDatabase }, ref) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showDialogBox, setShowDialogBox] = useState(false);
   const [isTaskUpdating, setIsTaskUpdating] = useState(false);
@@ -88,23 +88,6 @@ const Task = ({ task, isSub = false, onChange, subtaskChange, showSubtasks, togg
     saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
     updateSubtasksOrder(updatedTask);
   };
-
-  const saveSubtaskOrderToDatabase = async (subtasks) => {
-    for (const subtask of subtasks) {
-      try {
-        await fetch(`http://localhost:8000/subtasks/${subtask.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(subtask),
-        });
-      } catch (error) {
-        console.error('Error updating subtask order:', error);
-      }
-    }
-  };
-
 
   return (
     <li

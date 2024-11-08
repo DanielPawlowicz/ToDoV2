@@ -20,6 +20,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
   const [focusedSubtaskId, setFocusedSubtaskId] = useState(null);
   const [focusedSubtask, setFocusedSubtask] = useState(null);
+  const [focusedTaskSubtasks, setFocusedTaskSubtasks] = useState(null);
   // const [focusedTaskIndex, setFocusedTaskIndex] = useState(null);
 
   const taskRefs = useRef({});
@@ -33,9 +34,10 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
   // Update focusedSubtask whenever the focused ID changes
   useEffect(() => {
-    const focusedTaskSubtasks = focusedTask?.subtasks || [];
-    const subtask = focusedTaskSubtasks.find((subtask) => subtask.id === focusedSubtaskId);
+    const focusedTaskSubtasksArray = focusedTask?.subtasks || [];
+    const subtask = focusedTaskSubtasksArray.find((subtask) => subtask.id === focusedSubtaskId);
     setFocusedSubtask(subtask || null); // Set to null if no task is focused
+    setFocusedTaskSubtasks(focusedTaskSubtasksArray || null)
   }, [focusedSubtaskId, tasks]);
 
 
@@ -205,7 +207,35 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
         setFocusedSubtaskId(null);
       } 
       else if(event.key === "u"){
-        if (focusedTask.order > 0) {
+
+        if (focusedSubtask.order > 0){
+          
+          // console.log(focusedTaskSubtasks)
+
+          // console.log(focusedSubtask)
+
+          const active = focusedTaskSubtasks[focusedSubtask.order]
+          const over = focusedTaskSubtasks[focusedSubtask.order - 1]
+
+          // console.log(active)
+          // console.log(over)
+
+          if (!over || active.id === over.id) return;
+
+          const oldIndex = focusedTaskSubtasks.findIndex((sub) => sub.id === active.id);
+          const newIndex = focusedTaskSubtasks.findIndex((sub) => sub.id === over.id);
+
+          const updatedSubtasks = arrayMove(focusedTaskSubtasks, oldIndex, newIndex).map((subtask, index) => ({
+            ...subtask,
+            order: index + 1,
+          }));
+
+          // Update parent task with reordered subtasks
+          const updatedTask = { ...focusedTask, subtasks: updatedSubtasks };
+          saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
+          updateSubtasksOrder(updatedTask);
+
+        } else if (focusedTask.order > 0) {
 
           const active = focusedTask
           const over = tasks[focusedTask.order-2]
@@ -277,6 +307,22 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     };
   }, []);
 
+  const saveSubtaskOrderToDatabase = async (subtasks) => {
+    for (const subtask of subtasks) {
+      try {
+        await fetch(`http://localhost:8000/subtasks/${subtask.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(subtask),
+        });
+      } catch (error) {
+        console.error('Error updating subtask order:', error);
+      }
+    }
+  };
+
 
 
   return (
@@ -300,6 +346,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
                   setFocused={setFocused}
                   focused={focused === task.id ? task.id : null}
                   focusedSubtaskId={focusedSubtaskId}
+                  saveSubtaskOrderToDatabase={saveSubtaskOrderToDatabase}
                   />
               </React.Fragment>
             ))}
