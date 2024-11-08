@@ -220,15 +220,28 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
         }
       } else if(event.key === "n"){
-        // if (focusedTaskIndex < tasks.length - 1) {
-        //   // Swap tasks to move the focused task down
-        //   [newTasks[focusedTaskIndex + 1], newTasks[focusedTaskIndex]] =
-        //     [newTasks[focusedTaskIndex], newTasks[focusedTaskIndex + 1]];
+        if (focusedTask.order > 0) {
 
-        //   // Update the focused task index
-        //   setFocusedTaskIndex(focusedTaskIndex + 1);
-        //   setTasks(newTasks); // Update the task list state
-        // }
+          const active = focusedTask
+          const over = tasks[focusedTask.order]
+
+          if (!over || active === over) return;
+
+          const oldIndex = tasks.findIndex(task => task.id === active.id);
+          const newIndex = tasks.findIndex(task => task.id === over.id);
+
+          const updatedTasks = arrayMove(tasks, oldIndex, newIndex);  // Move task in array
+
+          // Update the order based on new index positions
+          const tasksWithNewOrder = updatedTasks.map((task, index) => ({
+            ...task,
+            order: index + 1, // Set new order value
+          }));
+
+          setTasks(tasksWithNewOrder);  // Update state with reordered tasks
+          saveTaskOrderToDatabase(tasksWithNewOrder);  // Persist changes to the server
+
+        }
       }
     };
 
