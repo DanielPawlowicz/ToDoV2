@@ -38,7 +38,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     const subtask = focusedTaskSubtasksArray.find((subtask) => subtask.id === focusedSubtaskId);
     setFocusedSubtask(subtask || null); // Set to null if no task is focused
     setFocusedTaskSubtasks(focusedTaskSubtasksArray || null)
-  }, [focusedSubtaskId, tasks]);
+  }, [focusedSubtaskId, focusedSubtask, focused, tasks]);
 
 
 
@@ -208,10 +208,10 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
       } 
       else if(event.key === "u"){
 
-        if (focusedSubtask.order > 0){
+        if (focusedSubtask && focusedSubtask.order > 0){
           
-          const active = focusedTaskSubtasks[focusedSubtask.order]
-          const over = focusedTaskSubtasks[focusedSubtask.order - 1]
+          const active = focusedTaskSubtasks[focusedSubtask.order - 1]
+          const over = focusedTaskSubtasks[focusedSubtask.order - 2]
 
           if (!over || active.id === over.id) return;
 
@@ -227,6 +227,9 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           const updatedTask = { ...focusedTask, subtasks: updatedSubtasks };
           saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
           updateSubtasksOrder(updatedTask);
+
+          // setFocusedSubtaskId(updatedSubtasks[newIndex].id);
+          setFocusedSubtaskId(active.id);
 
         } else if (focusedTask.order > 0) {
 
@@ -251,10 +254,10 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
 
         }
       } else if(event.key === "n"){
-        if (focusedSubtask.order > 0) {
+        if (focusedSubtask && focusedSubtask.order > 0) {
 
-          const active = focusedTaskSubtasks[focusedSubtask.order]
-          const over = focusedTaskSubtasks[focusedSubtask.order + 1]
+          const active = focusedTaskSubtasks[focusedSubtask.order - 1]
+          const over = focusedTaskSubtasks[focusedSubtask.order]
 
           if (!over || active.id === over.id) return;
 
@@ -270,6 +273,9 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           const updatedTask = { ...focusedTask, subtasks: updatedSubtasks };
           saveSubtaskOrderToDatabase(updatedSubtasks); // Persist the order
           updateSubtasksOrder(updatedTask);
+
+          // setFocusedSubtaskId(updatedSubtasks[newIndex].id);
+          setFocusedSubtaskId(active.id);
 
         } else if (focusedTask.order > 0) {
 
@@ -292,6 +298,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           setTasks(tasksWithNewOrder);  // Update state with reordered tasks
           saveTaskOrderToDatabase(tasksWithNewOrder);  // Persist changes to the server
 
+
         }
       }
     };
@@ -302,7 +309,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [tasks, focused, focusedSubtaskId, focusedTask]);
+  }, [tasks, focused, focusedSubtaskId, focusedTask, focusedSubtask]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

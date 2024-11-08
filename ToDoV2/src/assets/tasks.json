@@ -10,13 +10,13 @@
       "id": "38eb521b-a951-41dc-8ce8-3437e0c622ca",
       "title": "Task 7",
       "isChecked": false,
-      "order": 4
+      "order": 3
     },
     {
       "id": "7014bb31-96aa-4935-bd69-4a2b9a829335",
       "title": "new test 1",
       "isChecked": true,
-      "order": 2
+      "order": 4
     },
     {
       "id": "48519ab6-fe4a-457a-a09e-c4154413839d",
@@ -34,14 +34,14 @@
       "id": "8000ec03-31c6-4f1d-8e64-36cdc09db5a4",
       "title": "how to make it",
       "isChecked": false,
-      "order": 3
+      "order": 2
     }
   ],
   "subtasks": [
     {
       "id": "05670755-c72d-46f9-aac6-cdc8c9124da4",
       "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
-      "order": 1,
+      "order": 3,
       "title": "Subtask 1.1",
       "isChecked": false
     },
@@ -55,7 +55,7 @@
     {
       "id": "ccd9f7bd-24c0-466e-a589-ff299a294a5d",
       "taskId": "7014bb31-96aa-4935-bd69-4a2b9a829335",
-      "order": 3,
+      "order": 1,
       "title": "Subtask 1.3",
       "isChecked": false
     },
