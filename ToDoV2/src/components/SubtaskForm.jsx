@@ -9,6 +9,7 @@ const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible, subtasks }) 
 
     useEffect(() => {
         if (inputRef.current) {
+            // imputRef.preventDefault();
             inputRef.current.focus();
         }
     }, [])

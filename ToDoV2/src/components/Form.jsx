@@ -24,8 +24,9 @@ const Form = ({ addTask, tasks }) => {
 // Focus on key press
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "f"){
+      if (event.altKey && event.key === "f"){
         event.preventDefault()
+
         inputRef.current.focus();
       } else if (event.key === "Escape") {
         inputRef.current.blur(); 

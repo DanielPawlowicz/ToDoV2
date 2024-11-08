@@ -128,7 +128,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           const previousIndex = (currentIndex - 1 + tasks.length) % tasks.length;
           setFocused(tasks[previousIndex]?.id);
         }
-      } else if (event.key === "c") {
+      } else if (event.altKey && event.key === "c") {
         // Toggle check-off for the focused task
         // if focused is the subtask
         if (focusedSubtaskId !== null){
@@ -149,7 +149,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             taskUpdate(updatedTask); // Call taskUpdate to save the change
           }
         }
-      } else if (event.key === "s") {
+      } else if (event.altKey && event.key === "s") {
         // Toggle subtasks for the focused task
         if (focused !== null) {
           setOpenSubtasks((prevOpenSubtasks) => ({
@@ -158,7 +158,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           }));
         }
         // delete focused
-      } else if (event.key === "d") {
+      } else if (event.altKey && event.key === "d") {
         // if focused is the subtask
         if (focusedSubtaskId !== null){
           const subtaskIndex = focusedTask?.subtasks?.findIndex(subtask => subtask.id === focusedSubtaskId);
@@ -185,10 +185,10 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
             }
           }
         }
-      } else if (event.key === "a" && focused) {
+      } else if (event.altKey && event.key === "a" && focused) {
         setSubtaskFormTaskId(focused);
         setIsSubtaskFormVisibleParent(true);
-        
+
       } else if (event.key === "ArrowRight"){
         if (focused !== null) {
           const task = tasks.find((t) => t.id === focused);
@@ -206,7 +206,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
         // toggleSubtasks(focused);
         setFocusedSubtaskId(null);
       } 
-      else if(event.key === "u"){
+      else if (event.altKey && event.key === "u"){
 
         if (focusedSubtask && focusedSubtask.order > 0){
           
@@ -253,7 +253,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           saveTaskOrderToDatabase(tasksWithNewOrder);  // Persist changes to the server
 
         }
-      } else if(event.key === "n"){
+      } else if (event.altKey && event.key === "n"){
         if (focusedSubtask && focusedSubtask.order > 0) {
 
           const active = focusedTaskSubtasks[focusedSubtask.order - 1]
