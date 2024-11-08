@@ -4,8 +4,10 @@ import styles from './TasksList.module.css';
 import ControlSubtasksToggle from './ControlSubtasksToggle';
 import { SortableContext } from '@dnd-kit/sortable';
 import SubtaskForm from './SubtaskForm';
+import { arrayMove } from '@dnd-kit/sortable'
 
-const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask, setTasks }) => {
+
+const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, updateTask, setTasks, saveTaskOrderToDatabase }) => {
   const [openSubtasks, setOpenSubtasks] = useState({});
   const [toggleAllSubtasksVisibility, setToggleAllSubtasksVisibility] = useState(false);
 
@@ -17,6 +19,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   const [subtaskFormPosition, setSubtaskFormPosition] = useState({ top: 0, left: 0 });
 
   const [focusedSubtaskId, setFocusedSubtaskId] = useState(null);
+  // const [focusedTaskIndex, setFocusedTaskIndex] = useState(null);
 
   const taskRefs = useRef({});
 
@@ -62,6 +65,11 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
   
   useEffect(() => {
     const handleKeyDown = (event) => {
+
+      // if (focusedTaskIndex === null) return;
+
+      const newTasks = [...tasks];
+
       // Unfocus tasks and subtasks on Esc key press (first subtask, then task)
       if (event.key === "Escape") {
         if(focusedSubtaskId !== null){
@@ -187,6 +195,40 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
       } else if (event.key === "ArrowLeft") {
         // toggleSubtasks(focused);
         setFocusedSubtaskId(null);
+      } 
+      else if(event.key === "u"){
+        if (focusedTask.order > 0) {
+
+          const active = focusedTask
+          const over = tasks[focusedTask.order-2]
+
+          if (!over || active === over) return;
+
+          const oldIndex = tasks.findIndex(task => task.id === active.id);
+          const newIndex = tasks.findIndex(task => task.id === over.id);
+
+          const updatedTasks = arrayMove(tasks, oldIndex, newIndex);  // Move task in array
+
+          // Update the order based on new index positions
+          const tasksWithNewOrder = updatedTasks.map((task, index) => ({
+            ...task,
+            order: index + 1, // Set new order value
+          }));
+
+          setTasks(tasksWithNewOrder);  // Update state with reordered tasks
+          saveTaskOrderToDatabase(tasksWithNewOrder);  // Persist changes to the server
+
+        }
+      } else if(event.key === "n"){
+        // if (focusedTaskIndex < tasks.length - 1) {
+        //   // Swap tasks to move the focused task down
+        //   [newTasks[focusedTaskIndex + 1], newTasks[focusedTaskIndex]] =
+        //     [newTasks[focusedTaskIndex], newTasks[focusedTaskIndex + 1]];
+
+        //   // Update the focused task index
+        //   setFocusedTaskIndex(focusedTaskIndex + 1);
+        //   setTasks(newTasks); // Update the task list state
+        // }
       }
     };
 

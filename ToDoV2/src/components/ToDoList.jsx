@@ -271,6 +271,10 @@ const ToDoList = () => {
   // Drag N Drop
 
   const handleDragEnd = ({ active, over }) => {
+    console.log(tasks)
+    console.log(active)
+    console.log(over);
+
     if (!over || active.id === over.id) return;
 
     const oldIndex = tasks.findIndex(task => task.id === active.id);
@@ -313,7 +317,7 @@ const ToDoList = () => {
     <div className={styles.container}>
           <Form addTask={addTask} tasks={tasks}/>
           <DndContext onDragEnd={handleDragEnd} collisionDetection={closestCorners}>
-            <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask} updateTask={updateTask} setTasks={setTasks}/>
+            <TasksList tasks={tasks} taskUpdate={taskUpdate} subtaskUpdate={updateSubtask} deleteTask={deleteTask} addSubtask={addSubtask} updateTask={updateTask} setTasks={setTasks} saveTaskOrderToDatabase={saveTaskOrderToDatabase}/>
           </DndContext>
       </div>
   )
