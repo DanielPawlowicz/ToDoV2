@@ -316,6 +316,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
       // Check if the click target is outside of the task list
       if (!event.target.closest(`.${styles.taskList}`)) {
         setFocused(null); // Set focused to null if clicked on whitespace
+        setFocusedSubtaskId(null)
       }
     };
 
