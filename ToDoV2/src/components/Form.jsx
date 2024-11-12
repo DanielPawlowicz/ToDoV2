@@ -48,6 +48,7 @@ const Form = ({ addTask, tasks }) => {
       <input
         id="title_input"
         type="text"
+        autoComplete="off"
         className="form_title"
         name="form_title"
         size={50}

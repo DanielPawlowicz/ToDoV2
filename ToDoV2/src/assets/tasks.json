@@ -1,67 +1,19 @@
 {
   "tasks": [
     {
-      "id": "d9f228ac-08f7-457c-8169-9e2a672767c1",
-      "title": "Śniadanie",
-      "isChecked": true,
-      "order": 1
-    },
-    {
-      "id": "bbe3951e-5155-4610-b15f-dbac1f32806f",
-      "title": "Pakowanie",
-      "isChecked": true,
-      "order": 2
-    },
-    {
       "id": "9246f467-a274-40d2-855b-1221b8c246a1",
       "title": "Programowanie",
       "isChecked": false,
-      "order": 3
+      "order": 1
+    },
+    {
+      "id": "8032d79b-fcc0-4108-9ae0-5faeb7f4b79f",
+      "title": "Workout",
+      "isChecked": false,
+      "order": 2
     }
   ],
   "subtasks": [
-    {
-      "id": "34e2b1fb-a769-46a5-9c13-d02269fd76a1",
-      "taskId": "d9f228ac-08f7-457c-8169-9e2a672767c1",
-      "order": 1,
-      "title": "Zrobić",
-      "isChecked": true
-    },
-    {
-      "id": "ff5ab3de-13ff-4387-8fbb-256defa56e12",
-      "taskId": "d9f228ac-08f7-457c-8169-9e2a672767c1",
-      "order": 2,
-      "title": "Pozmywać",
-      "isChecked": true
-    },
-    {
-      "id": "8e1f4d0d-f923-471a-9b0d-228a90b0ab88",
-      "taskId": "d9f228ac-08f7-457c-8169-9e2a672767c1",
-      "order": 3,
-      "title": "Załadować zmywarkę",
-      "isChecked": true
-    },
-    {
-      "id": "77dcaa91-57d0-4dc1-be1f-b1e9246ea3e5",
-      "taskId": "bbe3951e-5155-4610-b15f-dbac1f32806f",
-      "order": 1,
-      "title": "Rzeczy do torby",
-      "isChecked": true
-    },
-    {
-      "id": "b5fbce42-b49f-4001-a1d5-65284b1c169e",
-      "taskId": "bbe3951e-5155-4610-b15f-dbac1f32806f",
-      "order": 2,
-      "title": "Wino",
-      "isChecked": true
-    },
-    {
-      "id": "378f74ed-b5ca-4283-bbb1-d9032171de9c",
-      "taskId": "bbe3951e-5155-4610-b15f-dbac1f32806f",
-      "order": 3,
-      "title": "Ubranie na dzisiaj",
-      "isChecked": true
-    },
     {
       "id": "3de9c411-aab0-49f0-a6f2-b73b6c4c51b4",
       "taskId": "9246f467-a274-40d2-855b-1221b8c246a1",
@@ -81,6 +33,34 @@
       "taskId": "9246f467-a274-40d2-855b-1221b8c246a1",
       "order": 3,
       "title": "Authentication Yt",
+      "isChecked": false
+    },
+    {
+      "id": "1b2b93a8-0208-4881-8490-63f70654920f",
+      "taskId": "8032d79b-fcc0-4108-9ae0-5faeb7f4b79f",
+      "order": 1,
+      "title": "Kettlebell",
+      "isChecked": false
+    },
+    {
+      "id": "697eecd0-e225-4ac3-b4c6-6ac813a03815",
+      "taskId": "8032d79b-fcc0-4108-9ae0-5faeb7f4b79f",
+      "order": 2,
+      "title": "Jumps",
+      "isChecked": false
+    },
+    {
+      "id": "5298d4de-2906-42d4-8547-6212fa9bfe52",
+      "taskId": "8032d79b-fcc0-4108-9ae0-5faeb7f4b79f",
+      "order": 3,
+      "title": "Bulgarian squat",
+      "isChecked": false
+    },
+    {
+      "id": "d1409817-f19e-4d1a-a64d-b78d034f6e74",
+      "taskId": "8032d79b-fcc0-4108-9ae0-5faeb7f4b79f",
+      "order": 4,
+      "title": "Skate jumps",
       "isChecked": false
     }
   ]
