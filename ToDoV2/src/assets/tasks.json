@@ -29,6 +29,18 @@
       "title": "Inne",
       "isChecked": false,
       "order": 5
+    },
+    {
+      "id": "a8554f85-30f2-4fef-90b2-62b9a2d28c8d",
+      "title": "The Wolf Elite",
+      "isChecked": false,
+      "order": 6
+    },
+    {
+      "id": "b5459d3b-0767-426e-8168-add170028009",
+      "title": "Półka do pokoju",
+      "isChecked": false,
+      "order": 7
     }
   ],
   "subtasks": [
@@ -37,7 +49,7 @@
       "taskId": "9246f467-a274-40d2-855b-1221b8c246a1",
       "order": 1,
       "title": "To Do V2 ddk",
-      "isChecked": false
+      "isChecked": true
     },
     {
       "id": "3512afc7-eb2a-48c5-8586-0a0dffee3ddf",
@@ -99,20 +111,20 @@
       "id": "c4d416b2-128c-4d31-ad13-b4e0b90a976e",
       "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
       "order": 1,
-      "title": "Wino czerwone Chateau Boyar",
+      "title": "Wino czerwone Chateau Boyar - Rossmann",
       "isChecked": false
     },
     {
       "id": "d935b3d1-1783-4e4c-ad6b-0e187088430d",
       "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
-      "order": 2,
-      "title": "Wino białe Riesling Biedronka",
+      "order": 3,
+      "title": "Wino białe Riesling - biedronka",
       "isChecked": false
     },
     {
       "id": "423c4d96-e796-4177-bc46-58c0071aa7e7",
       "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
-      "order": 3,
+      "order": 5,
       "title": "Kwiatek dla mamy - kwiaciarnia",
       "isChecked": false
     },
@@ -126,7 +138,7 @@
     {
       "id": "86220092-a05f-439d-992c-d909f970952d",
       "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
-      "order": 5,
+      "order": 2,
       "title": "Kolczyki - Rossmann",
       "isChecked": false
     },
@@ -149,6 +161,55 @@
       "taskId": "3a295b43-1210-4d24-b575-f71f84a83b8a",
       "order": 2,
       "title": "Koszulka antypotowa",
+      "isChecked": false
+    },
+    {
+      "id": "26974d0f-5fed-4363-81eb-6e6b020f66c6",
+      "taskId": "a8554f85-30f2-4fef-90b2-62b9a2d28c8d",
+      "order": 1,
+      "title": "Szycie guzik bosmanka",
+      "isChecked": false
+    },
+    {
+      "id": "091ef3da-1706-49db-8706-9cee8c507fbb",
+      "taskId": "a8554f85-30f2-4fef-90b2-62b9a2d28c8d",
+      "order": 2,
+      "title": "Szycie guziki kamelowy",
+      "isChecked": false
+    },
+    {
+      "id": "87025788-cad9-4778-ae0d-7e8bacc84ee0",
+      "taskId": "a8554f85-30f2-4fef-90b2-62b9a2d28c8d",
+      "order": 3,
+      "title": "Lotki strzał",
+      "isChecked": false
+    },
+    {
+      "id": "58c79709-b8c9-4f92-980e-522319e2aeca",
+      "taskId": "b5459d3b-0767-426e-8168-add170028009",
+      "order": 1,
+      "title": "Uciąć i skręcić",
+      "isChecked": false
+    },
+    {
+      "id": "5c68a718-0bde-4915-a4f2-8370826dc49e",
+      "taskId": "b5459d3b-0767-426e-8168-add170028009",
+      "order": 2,
+      "title": "Przykręcić",
+      "isChecked": false
+    },
+    {
+      "id": "70760992-cacc-4226-8d7e-7e71ac2bd4f6",
+      "taskId": "b5459d3b-0767-426e-8168-add170028009",
+      "order": 3,
+      "title": "Poukładać",
+      "isChecked": false
+    },
+    {
+      "id": "61715696-bcc3-495b-9c0f-33f3edbd2612",
+      "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
+      "order": 6,
+      "title": "Deska na półke 2m",
       "isChecked": false
     }
   ]
