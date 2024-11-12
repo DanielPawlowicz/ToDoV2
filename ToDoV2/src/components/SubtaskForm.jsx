@@ -14,6 +14,22 @@ const SubtaskForm = ({ taskId, addSubtask, setIsSubtaskFormVisible, subtasks }) 
         }
     }, [])
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                inputRef.current.blur();
+                setIsSubtaskFormVisible(false);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+
+    }, [])
+
     const newSubtaskSubmit = (e) => {
         e.preventDefault();
 

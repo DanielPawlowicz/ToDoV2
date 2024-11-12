@@ -13,10 +13,22 @@
       "order": 2
     },
     {
-      "id": "32b7873c-b6ed-4148-947c-b1bc757a7364",
-      "title": "Test",
+      "id": "207312cf-d304-46ad-af8f-a5ceeeacf3e3",
+      "title": "Zmiana opon",
       "isChecked": false,
       "order": 3
+    },
+    {
+      "id": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
+      "title": "Zakupy",
+      "isChecked": false,
+      "order": 4
+    },
+    {
+      "id": "3a295b43-1210-4d24-b575-f71f84a83b8a",
+      "title": "Inne",
+      "isChecked": false,
+      "order": 5
     }
   ],
   "subtasks": [
@@ -67,6 +79,76 @@
       "taskId": "8032d79b-fcc0-4108-9ae0-5faeb7f4b79f",
       "order": 4,
       "title": "Skate jumps",
+      "isChecked": false
+    },
+    {
+      "id": "2cfb66ec-2662-44f9-babe-0818bff52252",
+      "taskId": "207312cf-d304-46ad-af8f-a5ceeeacf3e3",
+      "order": 1,
+      "title": "Czytanie",
+      "isChecked": false
+    },
+    {
+      "id": "4486fbb9-b4e1-4178-99c1-9e91c707b46b",
+      "taskId": "207312cf-d304-46ad-af8f-a5ceeeacf3e3",
+      "order": 2,
+      "title": "Licencjat teoria research",
+      "isChecked": false
+    },
+    {
+      "id": "c4d416b2-128c-4d31-ad13-b4e0b90a976e",
+      "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
+      "order": 1,
+      "title": "Wino czerwone Chateau Boyar",
+      "isChecked": false
+    },
+    {
+      "id": "d935b3d1-1783-4e4c-ad6b-0e187088430d",
+      "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
+      "order": 2,
+      "title": "Wino białe Riesling Biedronka",
+      "isChecked": false
+    },
+    {
+      "id": "423c4d96-e796-4177-bc46-58c0071aa7e7",
+      "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
+      "order": 3,
+      "title": "Kwiatek dla mamy - kwiaciarnia",
+      "isChecked": false
+    },
+    {
+      "id": "ac998efb-b631-48fc-93bd-977a502b2e45",
+      "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
+      "order": 4,
+      "title": "Rafaello - biedronka",
+      "isChecked": false
+    },
+    {
+      "id": "86220092-a05f-439d-992c-d909f970952d",
+      "taskId": "44420ec8-b6f7-4652-bbb8-4cb06a61ef9e",
+      "order": 5,
+      "title": "Kolczyki - Rossmann",
+      "isChecked": false
+    },
+    {
+      "id": "ae45d47a-2cb4-48cb-9141-c52ea7eac392",
+      "taskId": "3a295b43-1210-4d24-b575-f71f84a83b8a",
+      "order": 1,
+      "title": "Okrąg wypalenia",
+      "isChecked": false
+    },
+    {
+      "id": "32f6d00c-7981-4985-bd6f-1315cbc67207",
+      "taskId": "ae45d47a-2cb4-48cb-9141-c52ea7eac392",
+      "order": 1,
+      "title": "Koszulka antypotowa",
+      "isChecked": false
+    },
+    {
+      "id": "9ce3e8f1-0896-4499-8669-4b98e4f37a1d",
+      "taskId": "3a295b43-1210-4d24-b575-f71f84a83b8a",
+      "order": 2,
+      "title": "Koszulka antypotowa",
       "isChecked": false
     }
   ]
