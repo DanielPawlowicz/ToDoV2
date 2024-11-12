@@ -158,7 +158,7 @@ const TasksList = ({ tasks, taskUpdate, subtaskUpdate, deleteTask, addSubtask, u
           }));
         }
         // delete focused
-      } else if (event.altKey && event.key === "d") {
+      } else if (event.key === "Delete") {
         // if focused is the subtask
         if (focusedSubtaskId !== null){
           const subtaskIndex = focusedTask?.subtasks?.findIndex(subtask => subtask.id === focusedSubtaskId);
